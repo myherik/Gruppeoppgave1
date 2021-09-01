@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+          crossorigin="anonymous">
+    <title>Ferjetur</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Color Line</h1>
+    <h2>Velg ferjestrekning</h2>
+    <table class="table">
+        <tr>
+            <td><label for="ferjestrekning">Ferjestrekning</label></td>
+            <td>
+                <select name="ferjestrekning" id="ferjestrekning">
+                    <option value="VelgFerjestrekning">Velg ferjestrekning</option>
+                    <option value="Larvik-Hirtshals">Larvik - Hirtshals</option>
+                    <option value="Kristiansand-Hirtshals">Kristiansand - Hirtshals</option>
+                    <option value="Sandefjord-Strömstad">Sandefjord - Strömstad</option>
+                    <option value="Oslo-Kiel">Oslo - Kiel</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="velgUtreise">Velg utreise</label></td>
+            <td><input id="velgUtreise" type="date"></td>
+        </tr>
+        <tr>
+            <td><label for="hjemDato">Velg hjemreise</label></td>
+            <td><input id="hjemDato" disabled type="date">
+            <input onclick="skalHjem()" id="skalHjem" type="checkbox" style="margin-left: 5%"> Vil ha hjemreise</td>
+        </tr>
+        <tr>
+            <td><label for="regNummer">Velg bil</label></td>
+            <td><input id="regNummer" disabled type="text" placeholder="regnummer her">
+                <input onclick="skalBil()" id="regCheck" type="checkbox" style="margin-left: 5%"> Skal ha bil</td>
+        </tr>
+        <tr>
+            <td><p>Velg antall</p></td>
+            <td><label style="margin-right: 5%" for="voksen">Voksen</label><input id="voksen" style="margin-right: 5%" type="number"> 
+                <label style="margin-right: 5%" for="barn">Barn</label><input id="barn" type="number"></td>
+        </tr>
+        <tr>
+            <td><a href="reisende.html"><button onclick="videre()" id="videre" class="btn btn-success">
+                Gå videre med bestillingen</button></a></td>
+        </tr>
+    </table>
+</div>
+
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+        crossorigin="anonymous">
+</script>
+<script src="js/index.js"></script>
+</body>
+</html>
