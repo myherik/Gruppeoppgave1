@@ -17,11 +17,11 @@ const formatTable = () => {
         aria-controls="tableVoksen${i}">Fyll ut voksen #${i}</button><div class="collapse" id="tableVoksen${i}"><table class='table' >
         <tbody>
         <tr><td><label for="fornavnVoksen${i}">Fornavn</label></td>
-        <td><input class="form-control" type="text" id="fornavnVoksen${i}"></td></tr>
+        <td><input onkeyup="validerFornavn(this)" class="form-control" type="text" id="fornavnVoksen${i}"></td></tr>
         <tr><td><label for="etternavnVoksen${i}">Etternavn</label></td>
-        <td><input class="form-control" type="text" id="etternavnVoksen${i}"></td></tr>
+        <td><input onkeyup="validerEtternavn(this)" class="form-control" type="text" id="etternavnVoksen${i}"></td></tr>
         <tr><td><label for="datoVoksen${i}">Fødselsdato</label></td>
-        <td><input class="form-control" type="date" id="datoVoksen${i}"></td></tr>
+        <td><input onchange="validerBursdagV(this)" class="form-control" type="date" id="datoVoksen${i}"></td></tr>
         </tbody></table></div></td></tr>
       `
         $("#voksen").append(outVoksen)
@@ -38,7 +38,7 @@ const formatTable = () => {
         <tr><td><label for="etternavn${i}">Etternavn</label></td>
         <td><input onkeyup="validerEtternavn(this)" class="form-control" type="text" id="etternavn${i}"></td></tr>
         <tr><td><label for="dato${i}">Fødselsdato</label></td>
-        <td><input onchange="validerBursdag(this)" class="form-control" type="date" id="dato${i}"></td></tr>
+        <td><input onchange="validerBursdagB(this)" class="form-control" type="date" id="dato${i}"></td></tr>
         </tbody></table></div></td></tr>
       `
         $("#barn").append(outBarn)
@@ -68,5 +68,50 @@ const validerEtternavn = (item) => {
     else {
         item.classList.remove("is-valid");
         item.classList.add("is-invalid");
+    }
+}
+const validerBursdagB = (item) => {
+    const date = item.value
+    if (validerBursdag(date)){
+        item.classList.remove("is-invalid");
+        item.classList.add("is-valid");
+    }
+    else {
+        item.classList.remove("is-invalid");
+        item.classList.add("is-invalid");
+    }
+}
+const validerBursdagV = (item) => {
+    const date = item.value;
+    const bool = validerBursdag(date);
+    if (!validerBursdag(date)){
+        item.classList.remove("is-invalid");
+        item.classList.add("is-valid");
+    }
+    else {
+        item.classList.remove("is-valid");
+        item.classList.add("is-invalid");
+    }
+}
+const validerBursdag = (date) => {
+    const year = new Date(Date.now()).getFullYear() - new Date(date).getFullYear();
+    if (year < 18){
+        return true;
+    }
+    else if (year > 18){
+        return false;
+    }
+    else {
+        if (new Date(Date.now()).getMonth() <= new Date(date).getMonth()){
+            if (new Date(Date.now()).getDay() <= new Date(date).getDay()){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
     }
 }
