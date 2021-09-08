@@ -18,7 +18,7 @@
         <tr>
             <td><label for="ferjestrekning">Ferjestrekning</label></td>
             <td>
-                <select name="ferjestrekning" id="ferjestrekning">
+                <select class="form-control" name="ferjestrekning" id="ferjestrekning">
                     <option value="VelgFerjestrekning">Velg ferjestrekning</option>
                     <option value="Larvik-Hirtshals">Larvik - Hirtshals</option>
                     <option value="Kristiansand-Hirtshals">Kristiansand - Hirtshals</option>
@@ -29,22 +29,22 @@
         </tr>
         <tr>
             <td><label for="velgUtreise">Velg utreise</label></td>
-            <td><input id="velgUtreise" type="date"></td>
+            <td><input onchange="validerUtreise(this)" class="form-control" id="velgUtreise" type="date"></td>
         </tr>
         <tr>
             <td><label for="hjemDato">Velg hjemreise</label></td>
-            <td><input id="hjemDato" disabled type="date">
-            <input onclick="skalHjem()" id="skalHjem" type="checkbox" style="margin-left: 5%"> Vil ha hjemreise</td>
+            <td><input onchange="validerHjemreise(this)" class="form-control" id="hjemDato" disabled type="date">
+            <input class="form-check-input" onclick="skalHjem()" id="skalHjem" type="checkbox"> Vil ha hjemreise</td>
         </tr>
         <tr>
             <td><label for="regNummer">Velg bil</label></td>
-            <td><input id="regNummer" disabled type="text" placeholder="regnummer her">
-                <input onclick="skalBil()" id="regCheck" type="checkbox" style="margin-left: 5%"> Skal ha bil</td>
+            <td><input onkeyup="validerRegnummer()" class="form-control" id="regNummer" disabled type="text" placeholder="regnummer her">
+                <input class="form-check-input" onclick="skalBil()" id="regCheck" type="checkbox"> Skal ha bil</td>
         </tr>
         <tr>
             <td><p>Velg antall</p></td>
-            <td><label style="margin-right: 5%" for="voksen">Voksen</label><input id="voksen" style="margin-right: 5%" type="number"> 
-                <label style="margin-right: 5%" for="barn">Barn</label><input id="barn" type="number"></td>
+            <td><label style="margin-right: 5%" for="voksen">Voksen</label><input class="form-control" id="voksen" style="margin-right: 5%" type="number"> 
+                <label style="margin-right: 5%" for="barn">Barn</label><input class="form-control" id="barn" type="number"></td>
         </tr>
         <tr>
             <td><a href="reisende.html"><button onclick="videre()" id="videre" class="btn btn-success">
