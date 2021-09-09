@@ -11,20 +11,24 @@ const sjekkVidere = () => {
   if ($("#skalHjem").is(":checked")){
     if (bHjemreise === false){
       $("#videre").attr("disabled", true);
+      $("#videreLink").attr("href", "#");
       return;
     }
   }
   if ($("#regCheck").is(":checked")){
     if (bRegnummer === false){
       $("#videre").attr("disabled", true);
+      $("#videreLink").attr("href", "#");
       return;
     }
   }
   if (bFerjestrekning === true && bUtreise == true && bVoksne === true && bBarn === true){
     $("#videre").attr("disabled", false);
+    $("#videreLink").attr("href", "reisende.html");
   }
   else {
     $("#videre").attr("disabled", true);
+    $("#videreLink").attr("href", "#");
   }
 }
 
@@ -91,13 +95,23 @@ const validerStrekning = (item) => {
 
 const validerUtreise = (item) => {
   const date = item.value;
+  const hjemreise = $("#hjemDato").val();
   const today = new Date(Date.now()).getDay() + new Date(Date.now()).getMonth() + new Date(Date.now()).getFullYear();
   const chosenDay = new Date(date).getDay() + new Date(date).getMonth() + new Date(date).getFullYear();
   if (new Date(date) > new Date(Date.now()) || today === chosenDay){
-    item.classList.remove("is-invalid");
-    item.classList.add("is-valid");
-    bUtreise = true;
-    sjekkVidere();
+    if (hjemreise === "" || new Date(hjemreise) > new Date(date)){
+      item.classList.remove("is-invalid");
+      item.classList.add("is-valid");
+      bUtreise = true;
+      sjekkVidere();
+    }
+    else {
+      item.classList.remove("is-valid");
+      item.classList.add("is-invalid");
+      bUtreise = false;
+      sjekkVidere();
+    }
+    
   }
   else {
     item.classList.remove("is-valid");
@@ -109,7 +123,7 @@ const validerUtreise = (item) => {
 
 const validerHjemreise = (item) => {
   const date = item.value;
-  const utreiseDate = $("#velgUtreise").val()
+  const utreiseDate = $("#velgUtreise").val();
   if(new Date(date) > new Date(utreiseDate)){
     item.classList.remove("is-invalid");
     item.classList.add("is-valid");
