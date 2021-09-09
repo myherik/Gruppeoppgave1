@@ -19,7 +19,7 @@ const skalBil = () => {
 const videre = () => {
   const inputs = {
     ferjestrekning: $("#ferjestrekning").val(),
-    velgUtreise: $("#velgUtreise").val(),
+    utreise: $("#velgUtreise").val(),
     hjemDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
     regNummer: $("#regCheck").is(":checked") ? $("#regNummer").val(): null,
     reisende: {
@@ -65,7 +65,7 @@ const validerHjemreise = (item) => {
 }
 const validerRegnummer = () => {
   const regnummer = $("#regNummer").val()
-  const regexRegnummer = new RegExp(`[A-Z]{2}\\s[1-9]{1}[0-9]{4}`)
+  const regexRegnummer = new RegExp(`^[A-Z]{2}\\s[1-9]{1}[0-9]{4}$`)
   
   if (regexRegnummer.test(regnummer)){
     $("#regNummer").removeClass("is-invalid");

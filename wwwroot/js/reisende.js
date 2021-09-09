@@ -4,8 +4,27 @@ let bestilling;
 $(()=>{
     bestilling = JSON.parse(localStorage.getItem("formData"));
     formatTable();
+    setReisende();
     //localStorage.clear();
 })
+let reisendeVoksen = [];
+let reisendeBarn = [];
+const setReisende = () => {
+    for ( let i = 0; i < bestilling.reisende.voksen; i++) {
+        reisendeVoksen[i] = {
+            fornavn: $(`#fornavnVoksen${i + 1}`).val(),
+            etternavn: $(`#etternavnVoksen${i + 1}`).val(),
+            dato: $(`#datoVoksen${i + 1}`).val()
+        }
+    }
+    for (let i = 0; i < bestilling.reisende.barn; i++) {
+        reisendeBarn[i] = {
+            fornavn: $(`#fornavn${i + 1}`).val(),
+            etternavn: $(`#etternavn${i + 1}`).val(),
+            dato: $(`#dato${i + 1}`).val()
+        }
+    }
+}
 
 
 const formatTable = () => {
@@ -21,7 +40,7 @@ const formatTable = () => {
         <tr><td><label for="etternavnVoksen${i}">Etternavn</label></td>
         <td><input onkeyup="validerEtternavn(this)" class="form-control" type="text" id="etternavnVoksen${i}"></td></tr>
         <tr><td><label for="datoVoksen${i}">Fødselsdato</label></td>
-        <td><input onchange="validerBursdagV(this)" class="form-control" type="date" id="datoVoksen${i}"></td></tr>
+        <td><input onchange="validerBursdag(${i}, this, 'voksen')" class="form-control" type="date" id="datoVoksen${i}"></td></tr>
         </tbody></table></div></td></tr>
       `
         $("#voksen").append(outVoksen)
@@ -38,7 +57,7 @@ const formatTable = () => {
         <tr><td><label for="etternavn${i}">Etternavn</label></td>
         <td><input onkeyup="validerEtternavn(this)" class="form-control" type="text" id="etternavn${i}"></td></tr>
         <tr><td><label for="dato${i}">Fødselsdato</label></td>
-        <td><input onchange="validerBursdagB(this)" class="form-control" type="date" id="dato${i}"></td></tr>
+        <td><input onchange="validerBursdag(${i}, this, 'barn')" class="form-control" type="date" id="dato${i}"></td></tr>
         </tbody></table></div></td></tr>
       `
         $("#barn").append(outBarn)
@@ -70,6 +89,43 @@ const validerEtternavn = (item) => {
         item.classList.add("is-invalid");
     }
 }
+
+const validerBursdag = (index, item, type) => {
+    let date = item.value;
+    let dateObj = new Date(date)
+    let diff = new Date(new Date(bestilling.utreise) - dateObj)
+    diff.setDate(diff.getDate() - 1)
+    let diffYear = diff.getFullYear() - 1970
+    switch (type){
+        case 'voksen': {
+            if (diffYear >= 18) {
+                item.classList.add("is-valid")
+                item.classList.remove("is-invalid")
+                reisendeVoksen[index -1].dato = date;
+                $("#validMsg").text('')
+            } else {
+                item.classList.remove("is-valid")
+                item.classList.add("is-invalid")
+                $("#validMsg").text(`Fødselsdato til ${type} #${index} er ikke gyldig`)
+            }
+            break;
+        }
+        case 'barn' : {
+            if (diffYear >= 0 && diffYear < 18) {
+                item.classList.add("is-valid")
+                item.classList.remove("is-invalid")
+                reisendeBarn[index -1].dato = date;
+                $("#validMsg").text('')
+            } else {
+                item.classList.remove("is-valid")
+                item.classList.add("is-invalid")
+                $("#validMsg").text(`Fødselsdato til ${type} #${index} er ikke gyldig`)
+            }
+        }
+    }
+}
+
+/*
 const validerBursdagB = (item) => {
     const date = item.value
     if (validerBursdag(date)){
@@ -115,3 +171,7 @@ const validerBursdag = (date) => {
         }
     }
 }
+const isBorn = (date) => {
+    return new Date(Date.now()) > new Date(date);
+}
+*/
