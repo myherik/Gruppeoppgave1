@@ -93,7 +93,7 @@ const validerEtternavn = (item) => {
 const validerBursdag = (index, item, type) => {
     let date = item.value;
     let dateObj = new Date(date)
-    let diff = new Date(new Date(bestilling.utreise) - dateObj)
+    let diff = new Date(new Date(bestilling.UtreiseDato) - dateObj)
     diff.setDate(diff.getDate() - 1)
     let diffYear = diff.getFullYear() - 1970
     switch (type){
@@ -125,7 +125,18 @@ const validerBursdag = (index, item, type) => {
     }
 }
 
-
+const sendBestilling = () => {
+    bestilling.Voksne = 
+    $.ajax({
+        url: "/api/Bestilling",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(bestilling),
+        success: data => {
+            console.log(data);
+        },
+    })
+}
 
 /*
 const validerBursdagB = (item) => {

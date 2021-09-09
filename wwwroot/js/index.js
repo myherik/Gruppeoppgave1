@@ -18,15 +18,14 @@ const skalBil = () => {
 }
 const videre = () => {
   const inputs = {
-    ferjestrekning: $("#ferjestrekning").val(),
-    utreise: $("#velgUtreise").val(),
-    hjemDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
-    regNummer: $("#regCheck").is(":checked") ? $("#regNummer").val(): null,
+    Ferjestrekning: $("#ferjestrekning").val(),
+    UtreiseDato: $("#velgUtreise").val(),
+    HjemReiseDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
+    Registreringsnummer: $("#regCheck").is(":checked") ? $("#regNummer").val(): null,
     reisende: {
       voksne: $("#voksen").val(),
       barn: $("#barn").val()
     }
-    
   }
   localStorage.setItem("formData", JSON.stringify(inputs))
   console.log(JSON.parse(localStorage.getItem("formData")));

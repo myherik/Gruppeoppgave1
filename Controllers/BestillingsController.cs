@@ -11,6 +11,7 @@ namespace Gruppeoppgave1.Controllers
         [HttpPost]
         public async Task<ActionResult> AddBestilling([FromBody]Bestilling bestilling)
         {
+            Console.WriteLine("Ny bestilling: ");
             Console.WriteLine(bestilling);
             return Ok();
         }
