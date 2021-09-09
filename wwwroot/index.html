@@ -18,7 +18,7 @@
         <tr>
             <td><label for="ferjestrekning">Ferjestrekning</label></td>
             <td>
-                <select class="form-control" name="ferjestrekning" id="ferjestrekning">
+                <select onchange="validerStrekning(this)" class="form-control" name="ferjestrekning" id="ferjestrekning">
                     <option value="VelgFerjestrekning">Velg ferjestrekning</option>
                     <option value="Larvik-Hirtshals">Larvik - Hirtshals</option>
                     <option value="Kristiansand-Hirtshals">Kristiansand - Hirtshals</option>
@@ -43,11 +43,13 @@
         </tr>
         <tr>
             <td><p>Velg antall</p></td>
-            <td><label style="margin-right: 5%" for="voksen">Voksen</label><input class="form-control" id="voksen" style="margin-right: 5%" type="number"> 
-                <label style="margin-right: 5%" for="barn">Barn</label><input class="form-control" id="barn" type="number"></td>
+            <td><label style="margin-right: 5%" for="voksen">Voksen</label>
+                <input onkeyup="validerVoksne(this)" class="form-control" id="voksen" style="margin-right: 5%" type="number"> 
+                <label style="margin-right: 5%" for="barn">Barn</label>
+                <input onkeyup="validerBarn(this)" class="form-control" id="barn" type="number"></td>
         </tr>
         <tr>
-            <td><a href="reisende.html"><button onclick="videre()" id="videre" class="btn btn-success">
+            <td><a href="reisende.html"><button onclick="videre()" id="videre" class="btn btn-success" disabled>
                 Gå videre med bestillingen</button></a></td>
         </tr>
     </table>
