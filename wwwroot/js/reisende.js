@@ -125,6 +125,8 @@ const validerBursdag = (index, item, type) => {
     }
 }
 
+
+
 /*
 const validerBursdagB = (item) => {
     const date = item.value
