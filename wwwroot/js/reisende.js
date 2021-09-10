@@ -2,7 +2,8 @@
 let bestilling;
 
 $(()=>{
-    bestilling = JSON.parse(localStorage.getItem("formData"));
+    bestilling = JSON.parse(localStorage.getItem("formData"))
+    console.log(bestilling);
     formatTable();
     setReisende();
     //localStorage.clear();
@@ -13,6 +14,7 @@ let reisendeBarn = [];
 const setReisende = () => {
     for ( let i = 0; i < bestilling.reisende.voksne; i++) {
         reisendeVoksen[i] = {
+            Id: 0,
             fornavn: $(`#fornavnVoksen${i + 1}`).val(),
             etternavn: $(`#etternavnVoksen${i + 1}`).val(),
             dato: $(`#datoVoksen${i + 1}`).val()
@@ -20,6 +22,7 @@ const setReisende = () => {
     }
     for (let i = 0; i < bestilling.reisende.barn; i++) {
         reisendeBarn[i] = {
+            Id: 0,
             fornavn: $(`#fornavn${i + 1}`).val(),
             etternavn: $(`#etternavn${i + 1}`).val(),
             dato: $(`#dato${i + 1}`).val()
@@ -155,11 +158,12 @@ const sjekk = () => {
     if ($(`.is-valid`).length === (Number(bestilling.reisende.voksne) + Number(bestilling.reisende.barn)) * 3){
         $("#sendBestilling").attr("disabled", false);
     }
-    console.log(reisendeVoksen);
-    console.log(reisendeBarn);
 }
 
 const sendBestilling = () => {
+    bestilling.reisende.voksne = reisendeVoksen;
+    bestilling.reisende.barn = reisendeBarn;
+    console.log(bestilling);
     $.ajax({
         url: "/api/Bestilling",
         type: "POST",

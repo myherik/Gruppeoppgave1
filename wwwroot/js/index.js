@@ -64,6 +64,7 @@ const skalBil = () => {
 
 const videre = () => {
   const inputs = {
+    Id: 0,
     Ferjestrekning: $("#ferjestrekning").val(),
     UtreiseDato: $("#velgUtreise").val(),
     HjemReiseDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
