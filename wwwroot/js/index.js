@@ -79,7 +79,7 @@ const videre = () => {
 }
 
 const validerStrekning = (item) => {
-  if (item.value != "VelgFerjestrekning"){
+  if (item.value === "Larvik-Hirtshals" || item.value === "Kristiansand-Hirtshals" || item.value === "Sandefjord-Strömstad" || item.value === "Oslo-Kiel"){
     item.classList.remove("is-invalid");
     item.classList.add("is-valid");
     bFerjestrekning = true;

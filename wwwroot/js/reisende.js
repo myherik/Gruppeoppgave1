@@ -1,6 +1,5 @@
 
 let bestilling;
-let bFornavn = false, bEtternavn = false, bFoedselsdato = false;
 
 $(()=>{
     bestilling = JSON.parse(localStorage.getItem("formData"));
@@ -12,7 +11,7 @@ let reisendeVoksen = [];
 let reisendeBarn = [];
 
 const setReisende = () => {
-    for ( let i = 0; i < bestilling.reisende.voksen; i++) {
+    for ( let i = 0; i < bestilling.reisende.voksne; i++) {
         reisendeVoksen[i] = {
             fornavn: $(`#fornavnVoksen${i + 1}`).val(),
             etternavn: $(`#etternavnVoksen${i + 1}`).val(),
@@ -37,9 +36,9 @@ const formatTable = () => {
         aria-controls="tableVoksen${i}">Fyll ut voksen #${i}</button><div class="collapse" id="tableVoksen${i}"><table class='table' >
         <tbody>
         <tr><td><label for="fornavnVoksen${i}">Fornavn</label></td>
-        <td><input onkeyup="validerFornavn(this)" class="form-control" type="text" id="fornavnVoksen${i}"></td></tr>
+        <td><input onkeyup="validerFornavn(${i}, this, 'voksen')" class="form-control" type="text" id="fornavnVoksen${i}"></td></tr>
         <tr><td><label for="etternavnVoksen${i}">Etternavn</label></td>
-        <td><input onkeyup="validerEtternavn(this)" class="form-control" type="text" id="etternavnVoksen${i}"></td></tr>
+        <td><input onkeyup="validerEtternavn(${i}, this, 'voksen')" class="form-control" type="text" id="etternavnVoksen${i}"></td></tr>
         <tr><td><label for="datoVoksen${i}">Fødselsdato</label></td>
         <td><input onchange="validerBursdag(${i}, this, 'voksen')" class="form-control" type="date" id="datoVoksen${i}"></td></tr>
         </tbody></table></div></td></tr>
@@ -54,9 +53,9 @@ const formatTable = () => {
         aria-controls="table${i}">Fyll ut barn #${i}</button><div class="collapse" id="table${i}"><table class='table' >
         <tbody>
         <tr><td><label for="fornavn${i}">Fornavn</label></td>
-        <td><input onkeyup="validerFornavn(this)" class="form-control" type="text" id="fornavn${i}"></td></tr>
+        <td><input onkeyup="validerFornavn(${i}, this, 'barn')" class="form-control" type="text" id="fornavn${i}"></td></tr>
         <tr><td><label for="etternavn${i}">Etternavn</label></td>
-        <td><input onkeyup="validerEtternavn(this)" class="form-control" type="text" id="etternavn${i}"></td></tr>
+        <td><input onkeyup="validerEtternavn(${i}, this, 'barn')" class="form-control" type="text" id="etternavn${i}"></td></tr>
         <tr><td><label for="dato${i}">Fødselsdato</label></td>
         <td><input onchange="validerBursdag(${i}, this, 'barn')" class="form-control" type="date" id="dato${i}"></td></tr>
         </tbody></table></div></td></tr>
@@ -65,12 +64,21 @@ const formatTable = () => {
     }
 }
 
-const validerFornavn = (item) => {
+const validerFornavn = (index, item, type) => {
     const navn = item.value;
     const regNavn = new RegExp(`^([A-ZÆØÅ]{1}[a-zæøå]{0,}\\s{0,1}){1,}$`);
     if (regNavn.test(navn)){
         item.classList.remove("is-invalid");
         item.classList.add("is-valid");
+        switch (type) {
+            case 'voksen': {
+                reisendeVoksen[index - 1].fornavn = navn;
+                break;
+            }
+            case 'barn': {
+                reisendeBarn[index - 1].fornavn = navn;
+            }
+        }
         sjekk();
     }
     else {
@@ -78,15 +86,23 @@ const validerFornavn = (item) => {
         item.classList.add("is-invalid");
         sjekk();
     }
-    
 }
 
-const validerEtternavn = (item) => {
+const validerEtternavn = (index, item, type) => {
     const navn = item.value;
     const regNavn = new RegExp(`^[A-ZÆØÅ]{1}[a-zæøå]{0,}$`);
     if (regNavn.test(navn)){
         item.classList.remove("is-invalid");
         item.classList.add("is-valid");
+        switch (type) {
+            case 'voksen': {
+                reisendeVoksen[index - 1].etternavn = navn;
+                break;
+            }
+            case 'barn': {
+                reisendeBarn[index - 1].etternavn = navn;
+            }
+        }
         sjekk();
     }
     else {
@@ -108,7 +124,7 @@ const validerBursdag = (index, item, type) => {
                 item.classList.add("is-valid")
                 item.classList.remove("is-invalid")
                 sjekk();
-                reisendeVoksen[index -1].dato = date;
+                reisendeVoksen[index - 1].dato = date;
                 $("#validMsg").text('')
             } else {
                 item.classList.remove("is-valid")
@@ -123,7 +139,7 @@ const validerBursdag = (index, item, type) => {
                 item.classList.add("is-valid")
                 item.classList.remove("is-invalid")
                 sjekk();
-                reisendeBarn[index -1].dato = date;
+                reisendeBarn[index - 1].dato = date;
                 $("#validMsg").text('')
             } else {
                 item.classList.remove("is-valid")
@@ -139,10 +155,11 @@ const sjekk = () => {
     if ($(`.is-valid`).length === (Number(bestilling.reisende.voksne) + Number(bestilling.reisende.barn)) * 3){
         $("#sendBestilling").attr("disabled", false);
     }
+    console.log(reisendeVoksen);
+    console.log(reisendeBarn);
 }
 
 const sendBestilling = () => {
-    bestilling.Voksne = 
     $.ajax({
         url: "/api/Bestilling",
         type: "POST",
