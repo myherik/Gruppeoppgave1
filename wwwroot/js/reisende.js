@@ -1,5 +1,6 @@
 
 let bestilling;
+let bFornavn = false, bEtternavn = false, bFoedselsdato = false;
 
 $(()=>{
     bestilling = JSON.parse(localStorage.getItem("formData"));
@@ -9,6 +10,7 @@ $(()=>{
 })
 let reisendeVoksen = [];
 let reisendeBarn = [];
+
 const setReisende = () => {
     for ( let i = 0; i < bestilling.reisende.voksen; i++) {
         reisendeVoksen[i] = {
@@ -25,7 +27,6 @@ const setReisende = () => {
         }
     }
 }
-
 
 const formatTable = () => {
     let outVoksen = ""
@@ -70,23 +71,28 @@ const validerFornavn = (item) => {
     if (regNavn.test(navn)){
         item.classList.remove("is-invalid");
         item.classList.add("is-valid");
+        sjekk();
     }
     else {
         item.classList.remove("is-valid");
         item.classList.add("is-invalid");
+        sjekk();
     }
     
 }
+
 const validerEtternavn = (item) => {
     const navn = item.value;
     const regNavn = new RegExp(`^[A-ZÆØÅ]{1}[a-zæøå]{0,}$`);
     if (regNavn.test(navn)){
         item.classList.remove("is-invalid");
         item.classList.add("is-valid");
+        sjekk();
     }
     else {
         item.classList.remove("is-valid");
         item.classList.add("is-invalid");
+        sjekk();
     }
 }
 
@@ -101,11 +107,13 @@ const validerBursdag = (index, item, type) => {
             if (diffYear >= 18) {
                 item.classList.add("is-valid")
                 item.classList.remove("is-invalid")
+                sjekk();
                 reisendeVoksen[index -1].dato = date;
                 $("#validMsg").text('')
             } else {
                 item.classList.remove("is-valid")
                 item.classList.add("is-invalid")
+                sjekk();
                 $("#validMsg").text(`Fødselsdato til ${type} #${index} er ikke gyldig`)
             }
             break;
@@ -114,15 +122,25 @@ const validerBursdag = (index, item, type) => {
             if (diffYear >= 0 && diffYear < 18) {
                 item.classList.add("is-valid")
                 item.classList.remove("is-invalid")
+                sjekk();
                 reisendeBarn[index -1].dato = date;
                 $("#validMsg").text('')
             } else {
                 item.classList.remove("is-valid")
                 item.classList.add("is-invalid")
+                sjekk();
                 $("#validMsg").text(`Fødselsdato til ${type} #${index} er ikke gyldig`)
             }
         }
     }
+}
+
+const sjekk = () => {
+    if ($(`.is-valid`).length === (Number(bestilling.reisende.voksne) + Number(bestilling.reisende.barn)) * 3){
+        $("#sendBestilling").attr("disabled", false);
+    }
+    
+    
 }
 
 const sendBestilling = () => {
@@ -137,54 +155,3 @@ const sendBestilling = () => {
         },
     })
 }
-
-/*
-const validerBursdagB = (item) => {
-    const date = item.value
-    if (validerBursdag(date)){
-        item.classList.remove("is-invalid");
-        item.classList.add("is-valid");
-    }
-    else {
-        item.classList.remove("is-invalid");
-        item.classList.add("is-invalid");
-    }
-}
-const validerBursdagV = (item) => {
-    const date = item.value;
-    const bool = validerBursdag(date);
-    if (!validerBursdag(date)){
-        item.classList.remove("is-invalid");
-        item.classList.add("is-valid");
-    }
-    else {
-        item.classList.remove("is-valid");
-        item.classList.add("is-invalid");
-    }
-}
-const validerBursdag = (date) => {
-    const year = new Date(Date.now()).getFullYear() - new Date(date).getFullYear();
-    if (year < 18){
-        return true;
-    }
-    else if (year > 18){
-        return false;
-    }
-    else {
-        if (new Date(Date.now()).getMonth() <= new Date(date).getMonth()){
-            if (new Date(Date.now()).getDay() <= new Date(date).getDay()){
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
-        else {
-            return false;
-        }
-    }
-}
-const isBorn = (date) => {
-    return new Date(Date.now()) > new Date(date);
-}
-*/
