@@ -139,8 +139,6 @@ const sjekk = () => {
     if ($(`.is-valid`).length === (Number(bestilling.reisende.voksne) + Number(bestilling.reisende.barn)) * 3){
         $("#sendBestilling").attr("disabled", false);
     }
-    
-    
 }
 
 const sendBestilling = () => {

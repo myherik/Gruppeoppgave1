@@ -127,6 +127,9 @@ const validerHjemreise = (item) => {
   if(new Date(date) > new Date(utreiseDate)){
     item.classList.remove("is-invalid");
     item.classList.add("is-valid");
+    $("#velgUtreise").removeClass("is-invalid");
+    $("#velgUtreise").addClass("is-valid");
+    bUtreise = true;
     bHjemreise = true;
     sjekkVidere();
   }
