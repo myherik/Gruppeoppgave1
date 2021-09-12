@@ -17,7 +17,7 @@ const setReisende = () => {
             Id: 0,
             fornavn: $(`#fornavnVoksen${i + 1}`).val(),
             etternavn: $(`#etternavnVoksen${i + 1}`).val(),
-            dato: $(`#datoVoksen${i + 1}`).val()
+            Foedselsdato: $(`#datoVoksen${i + 1}`).val()
         }
     }
     for (let i = 0; i < bestilling.reisende.barn; i++) {
@@ -25,7 +25,7 @@ const setReisende = () => {
             Id: 0,
             fornavn: $(`#fornavn${i + 1}`).val(),
             etternavn: $(`#etternavn${i + 1}`).val(),
-            dato: $(`#dato${i + 1}`).val()
+            Foedselsdato: $(`#dato${i + 1}`).val()
         }
     }
 }
@@ -127,7 +127,7 @@ const validerBursdag = (index, item, type) => {
                 item.classList.add("is-valid")
                 item.classList.remove("is-invalid")
                 sjekk();
-                reisendeVoksen[index - 1].dato = date;
+                reisendeVoksen[index - 1].Foedselsdato = date;
                 $("#validMsg").text('')
             } else {
                 item.classList.remove("is-valid")
@@ -142,7 +142,7 @@ const validerBursdag = (index, item, type) => {
                 item.classList.add("is-valid")
                 item.classList.remove("is-invalid")
                 sjekk();
-                reisendeBarn[index - 1].dato = date;
+                reisendeBarn[index - 1].Foedselsdato = date;
                 $("#validMsg").text('')
             } else {
                 item.classList.remove("is-valid")
@@ -161,8 +161,8 @@ const sjekk = () => {
 }
 
 const sendBestilling = () => {
-    bestilling.reisende.voksne = reisendeVoksen;
-    bestilling.reisende.barn = reisendeBarn;
+    bestilling.voksne = reisendeVoksen;
+    bestilling.barn = reisendeBarn;
     console.log(bestilling);
     $.ajax({
         url: "/api/Bestilling",

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Gruppeoppgave1.Models
 {
@@ -15,7 +16,7 @@ namespace Gruppeoppgave1.Models
         public override string ToString()
         {
             return $"Id:{Id}, Ferjestrekning:{Ferjestrekning}, Utreisedato:{UtreiseDato}, HjemreiseDato:{HjemreiseDato}, " +
-                   $"Registreringsnummer:{Registreringsnummer}, Voksne:{Voksne}, Barn:{Barn}";
+                   $"Registreringsnummer:{Registreringsnummer}, Voksne:{string.Join(",", Voksne)}, Barn:{string.Join(",", Barn)}";
         }
     }
 }
