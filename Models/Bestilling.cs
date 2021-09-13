@@ -10,8 +10,8 @@ namespace Gruppeoppgave1.Models
         public string UtreiseDato { get; set; }
         public string HjemreiseDato { get; set; }
         public string Registreringsnummer { get; set; }
-        public List<Kunde> Voksne { get; set; }
-        public List<Kunde> Barn { get; set; }
+        public virtual List<Kunde> Voksne { get; set; }
+        public virtual List<Kunde> Barn { get; set; }
         
         public override string ToString()
         {

@@ -24,11 +24,9 @@ const sjekkVidere = () => {
   }
   if (bFerjestrekning === true && bUtreise == true && bVoksne === true && bBarn === true){
     $("#videre").attr("disabled", false);
-    $("#videreLink").attr("href", "reisende.html");
   }
   else {
     $("#videre").attr("disabled", true);
-    $("#videreLink").attr("href", "#");
   }
 }
 
@@ -76,7 +74,7 @@ const videre = () => {
   }
   localStorage.setItem("formData", JSON.stringify(inputs))
   console.log(JSON.parse(localStorage.getItem("formData")));
-  
+  window.location.href = "/reisende.html";
 }
 
 const validerStrekning = (item) => {
