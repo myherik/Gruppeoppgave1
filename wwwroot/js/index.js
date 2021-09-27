@@ -65,7 +65,7 @@ const videre = () => {
     Id: 0,
     Ferjestrekning: $("#ferjestrekning").val(),
     UtreiseDato: $("#velgUtreise").val(),
-    HjemReiseDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
+    HjemreiseDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
     Registreringsnummer: $("#regCheck").is(":checked") ? $("#regNummer").val(): null,
     reisende: {
       voksne: $("#voksen").val(),

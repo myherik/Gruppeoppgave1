@@ -1,45 +1,53 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
+using Gruppeoppgave1.DAL;
 using Gruppeoppgave1.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gruppeoppgave1.Controllers
 {
-    [Route("api/Bestilling")]
+    [ApiController]
+    [Route("api/bestilling")]
     public class BestillingsController:ControllerBase
     {
         
-        private readonly MyDBContext _db;
+        private readonly IBestillingRepo _db;
 
-        public BestillingsController(MyDBContext db)
+        public BestillingsController(IBestillingRepo db)
         {
             _db = db;
         }
 
-        [HttpGet("{int id}")]
-        public Bestilling hentBestilling(int id)
+        [HttpGet]
+        public async Task<ActionResult> HentAlle()
         {
-            var bestilling = _db.Bestillinger.Find(id);
-            return bestilling;
+            var bestillinger = await _db.HentAlle();
+            return Ok(bestillinger);
+        }
+
+        [HttpGet("{id}", Name ="HentBestilling")]
+        public async Task<ActionResult> HentBestilling(int id)
+        {
+            var bestilling = await _db.HentEn(id);
+            if (bestilling != null)
+            {
+                return Ok(bestilling);
+            }
+            
+            return NotFound();
         }
         
         [HttpPost]
         public async Task<ActionResult> AddBestilling([FromBody]Bestilling bestilling)
         {
-            Console.WriteLine("Ny bestilling: ");
-            Console.WriteLine(bestilling);
+            /*if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }*/
+            var returBestilling = await _db.LeggTil(bestilling);
 
-            try
-            {
-                _db.Bestillinger.Add(bestilling);
-                _db.SaveChanges();
-                return Ok();
-            }
-            catch
-            {
-                return Problem();
-            }
+            return CreatedAtRoute(nameof(HentBestilling), new {Id = returBestilling.Id}, returBestilling);
         }
 
     }

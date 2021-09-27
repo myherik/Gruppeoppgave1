@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Gruppeoppgave1.Models;
 
-namespace Gruppeoppgave1.Models
+namespace Gruppeoppgave1.DAL
 {
     public class MyDBContext : DbContext
     {
@@ -9,7 +10,8 @@ namespace Gruppeoppgave1.Models
         {
             Database.EnsureCreated();
         }
-        public DbSet<Kunde> Kunder { get; set; }
+        public DbSet<Barn> Barn { get; set; }
+        public DbSet<Voksen> Voksne { get; set; }
         public DbSet<Bestilling> Bestillinger { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

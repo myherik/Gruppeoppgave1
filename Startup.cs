@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Gruppeoppgave1.Models;
+
+using Gruppeoppgave1.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -20,6 +16,7 @@ namespace Gruppeoppgave1
         {
             services.AddControllers();
             services.AddDbContext<MyDBContext>(options => options.UseSqlite("Data source=Bestilling.db"));
+            services.AddScoped<IBestillingRepo, BestillingRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

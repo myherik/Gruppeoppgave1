@@ -171,7 +171,8 @@ const sendBestilling = () => {
         data: JSON.stringify(bestilling),
         success: data => {
             console.log(data);
+            window.location.href = "/bekreftelse.html";
         },
     })
-    window.location.href = "/bekreftelse.html";
+    
 }

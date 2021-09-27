@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Gruppeoppgave1.Models
@@ -6,12 +7,15 @@ namespace Gruppeoppgave1.Models
     public class Bestilling
     {
         public int Id { get; set; }
+        [Required]
         public string Ferjestrekning { get; set; }
+        [Required]
         public string UtreiseDato { get; set; }
         public string HjemreiseDato { get; set; }
         public string Registreringsnummer { get; set; }
-        public virtual List<Kunde> Voksne { get; set; }
-        public virtual List<Kunde> Barn { get; set; }
+        [Required]
+        public virtual List<Voksen> Voksne { get; set; }
+        public virtual List<Barn> Barn { get; set; }
         
         public override string ToString()
         {
