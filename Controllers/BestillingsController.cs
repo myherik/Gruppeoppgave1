@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Castle.DynamicProxy.Generators.Emitters.SimpleAST;
 using Gruppeoppgave1.DAL;
 using Gruppeoppgave1.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -41,10 +40,6 @@ namespace Gruppeoppgave1.Controllers
         [HttpPost]
         public async Task<ActionResult> AddBestilling([FromBody]Bestilling bestilling)
         {
-            /*if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }*/
             var returBestilling = await _db.LeggTil(bestilling);
 
             return CreatedAtRoute(nameof(HentBestilling), new {Id = returBestilling.Id}, returBestilling);

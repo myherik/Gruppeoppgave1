@@ -12,7 +12,7 @@ namespace Gruppeoppgave1.Models
         [RegularExpression("^[A-ZÆØÅ]{1}[a-zæøå]{0,}$")]
         public string Etternavn { get; set; }
         [Required]
-        [RegularExpression("[0-9]{4}[-][0-9]{2}[-][0-9]{2}")]
+        [RegularExpression("^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$")]
         public string Foedselsdato { get; set; }
 
         public override string ToString()
