@@ -163,7 +163,7 @@ const sjekk = () => {
 const sendBestilling = () => {
     bestilling.voksne = reisendeVoksen;
     bestilling.barn = reisendeBarn;
-    console.log(bestilling);
+    localStorage.setItem("id", bestilling.Id);
     $.ajax({
         url: "/api/Bestilling",
         type: "POST",
@@ -173,4 +173,5 @@ const sendBestilling = () => {
             console.log(data);
         },
     })
+    window.location.href = "/bekreftelse.html";
 }
