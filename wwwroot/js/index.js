@@ -88,14 +88,36 @@ const validerStrekning = (item) => {
     bFerjestrekning = true;
     sjekkVidere();
     const flags = $("#flags");
+    let string;
     switch (item.value){
         case "Larvik-Hirtshals":
-          let string = "<img class='boat' src='./res/SuperSpeed_2.jpg' alt='Danmark flagg'><p style='max-width: 50%' '>Overfarten med SuperSpeed" +
+          string = "<img class='boat' src='./res/SuperSpeed_2.jpg' alt='Danmark flagg'><p style='max-width: 50%' '>Overfarten med SuperSpeed" +
               " fra Larvik tar kun 3 timer og 45 minutter. Det lønner seg å bestille tidlig, da sikrer du deg god pris" +
               " og plass på ønsket avgang. Medlemmer av Color Club får de beste prisene på bilpakke til Danmark.</p>";
           flags.html(string);
           break;
-        case "Kristiansand-Hirtshals":
+      case "Kristiansand-Hirtshals":
+          string = "<img class='boat' src='./res/SuperSpeed_2.jpg' alt='Danmark flagg'><p style='max-width: 50%' '>Det " +
+              "lønner seg å bestille tidlig, da sikrer du deg en god pris og plass på ønsket avgang. Overfarten med " +
+              "SuperSpeed fra Kristiansand tar kun 3 timer og 15 minutter. Medlemmer av Color Club får de beste prisene " +
+              "på bilpakke til Danmark.</p>";
+          flags.html(string);
+          break;
+      case "Oslo-Kiel":
+          string = "<img class='boat' src='./res/Color_Magic.jpeg' alt='Danmark flagg'><p style='max-width: 50%' '>Det " +
+              "lønner seg å bestille tidlig, da sikrer du deg en god pris og plass på ønsket avgang. Overfarten med " +
+              "SuperSpeed fra Kristiansand tar kun 3 timer og 15 minutter. Medlemmer av Color Club får de beste prisene " +
+              "på bilpakke til Danmark.</p>";
+          flags.html(string);
+          break;
+      case "Sandefjord-Strömstad":
+          string = "<img class='boat' src='./res/Color_Hybrid.jpeg' alt='Danmark flagg'><p style='max-width: 50%' '>Kjør " +
+              "bilen om bord og nyt overfarten fra Sandefjord til Strømstad på kun 2 ½ time. Underveis kan du slappe av," +
+              " kose deg med et godt måltid og handle taxfree-varer til svært gunstige priser. TIPS! Det lønner seg å " +
+              "være medlem av Color Club, da får du blant annet gratis reise med bil på flere avganger, og ytterligere " +
+              "10% rabatt på en mengde varer.</p>";
+          flags.html(string);
+          
           
           
     }
@@ -209,5 +231,26 @@ const validerBarn = (item) => {
     item.classList.add("is-invalid");
     bBarn = false;
     sjekkVidere();
+  }
+}
+
+const mini = (land) => {
+  const ger = $("#collapseGermany");
+  const den = $("#collapseDenmark");
+  const swe = $("#collapseSweden");
+  
+  switch (land){
+    case 'sweden':
+      den.collapse("hide");
+      ger.collapse("hide");
+      break;
+    case 'germany':
+      den.collapse("hide");
+      swe.collapse("hide");
+      break;
+    case 'denmark':
+      ger.collapse("hide");
+      swe.collapse("hide");
+      break;
   }
 }

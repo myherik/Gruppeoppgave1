@@ -26,6 +26,7 @@ nav {
 #reise{
     display: flex;
     flex-direction: row;
+    margin-bottom: 2em;
 }
 .reise {
     width: 200px;
