@@ -1,0 +1,16 @@
+img {
+    
+}
+
+nav {
+    padding: 0!important;
+    margin-bottom: 20px;
+}
+
+.navbar-brand {
+    padding: 0!important;
+}
+
+.highlight {
+    color: rgba(255,255,255,1) !important;
+}

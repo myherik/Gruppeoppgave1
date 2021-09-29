@@ -12,8 +12,36 @@
 </head>
 <body>
 
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #102c66;">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="./res/Color_Line_logo.svg" alt="" style="background-color: white; padding: 5px" height="60px">
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="/" class="nav-link highlight">Bestill</a>
+                </li>
+                <li class="nav-item">
+                    <a href="bestillinger" class="nav-link">Se alle bestillinger</a>
+                </li>
+                <li class="nav-item">
+                    <a href="kunder" class="nav-link">Kunder</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="container">
-    <h1>Color Line</h1>
     <h2>Velg ferjestrekning</h2>
     <table class="table">
         <tr>
@@ -52,6 +80,7 @@
         <tr>
             <td><button onclick="videre()" id="videre" class="btn btn-success" disabled>
                 Gå videre med bestillingen</button></td>
+            <td></td>
         </tr>
     </table>
 </div>
