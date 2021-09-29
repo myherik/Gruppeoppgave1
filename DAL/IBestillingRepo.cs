@@ -13,9 +13,11 @@ namespace Gruppeoppgave1.DAL
 
         Task<Bestilling> LeggTil(Bestilling bestilling);
 
-        Task Slett(int id);
-
         Task Endre(int id, Kunde kunde);
+        
+        Task<int> Slett(int id);
+
+        Task<int> Lagre();
 
     }
 }

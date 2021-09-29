@@ -33,15 +33,22 @@ namespace Gruppeoppgave1.DAL
             return bestilling;
         }
 
-        public async Task Slett(int id)
-        {
-            var bestilling = await _db.Bestillinger.FirstOrDefaultAsync(b => b.Id == id);
-            _db.Bestillinger.Remove(bestilling);
-        }
-
         public async Task Endre(int id, Kunde kunde)
         {
             var besilling = await _db.Bestillinger.FirstOrDefaultAsync(b => b.Id == id);
+        }
+
+        public async Task<int> Lagre()
+        {
+            return await _db.SaveChangesAsync();
+        }
+
+        public async Task<int> Slett(int id)
+        {
+            var bestilling = await _db.Bestillinger.FirstOrDefaultAsync(b => b.Id == id);
+            _db.Bestillinger.Remove(bestilling);
+
+            return await _db.SaveChangesAsync();
         }
     }
 }

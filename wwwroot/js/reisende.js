@@ -171,6 +171,7 @@ const sendBestilling = () => {
         data: JSON.stringify(bestilling),
         success: data => {
             console.log(data);
+            localStorage.setItem("ordre", JSON.stringify(data))
             window.location.href = "/bekreftelse.html";
         },
     })
