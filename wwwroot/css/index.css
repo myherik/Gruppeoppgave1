@@ -16,13 +16,34 @@ nav {
 }
 
 .flags {
-    height: 2em;
-    border-radius: 5px;
-    
+    object-fit: cover;
+    height: 3em;
+    width: 3em;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: auto;
+}
+#reise{
+    display: flex;
+    flex-direction: row;
+}
+.reise {
+    width: 200px;
 }
 .boat {
     height: 10em;
+    margin-right: 1em;
 }
 #flags {
     margin: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.trykkemus{
+    cursor: pointer;
+}
+
+td {
+    width: 50%!important;
 }

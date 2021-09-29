@@ -42,7 +42,38 @@
 </nav>
 
 <div class="container">
-    <h2>Velg ferjestrekning</h2>
+    <div id="reise">
+        <div class="reise">
+            <img id="denmark" onclick="mini('denmark')" src="res/Flag_of_Denmark.svg" alt="Denmark flag" class="flags" data-bs-toggle="collapse" data-bs-target="#collapseDenmark"
+                 aria-expanded="false" aria-controls="collapseDenmark">
+            <div class="collapse" id="collapseDenmark">
+                <div class="card card-body">
+                    <p class="trykkemus" onclick="setReise('Larvik-Hirtshals')">Larvik - Hirtshals</p>
+                    <p class="trykkemus" onclick="setReise('Kristiansand-Hirtshals')">Kristiansand - Hirtshals</p>
+                </div>
+            </div>
+        </div>
+        <div class="reise">
+            <img id="germany" onclick="mini('germany')" src="res/Flag_of_Germany.svg" alt="Germany flag" class="flags" data-bs-toggle="collapse" data-bs-target="#collapseGermany"
+                 aria-expanded="false" aria-controls="collapseGermany">
+            <div class="collapse" id="collapseGermany">
+                <div class="card card-body">
+                    <p class="trykkemus" onclick="setReise('Oslo-Kiel')">Oslo - Kiel</p>
+                </div>
+            </div>
+        </div>
+        <div class="reise">
+            <img id="sweden" onclick="mini('sweden')" src="res/Flag_of_Sweden.svg" alt="Germany flag" class="flags" data-bs-toggle="collapse" data-bs-target="#collapseSweden"
+                 aria-expanded="false" aria-controls="collapseSweden">
+            <div class="collapse" id="collapseSweden">
+                <div class="card card-body">
+                    <p data-bs-toggle="collapse" data-bs-target="#collapseSweden"
+                       aria-expanded="false" aria-controls="collapseSweden"
+                       class="trykkemus" onclick="setReise('Sandefjord-Strömstad')">Sandefjord - Strömstad</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <table class="table">
         <tr>
             <td><label for="ferjestrekning">Ferjestrekning</label></td>
@@ -54,7 +85,6 @@
                     <option value="Sandefjord-Strömstad">Sandefjord - Strömstad</option>
                     <option value="Oslo-Kiel">Oslo - Kiel</option>
                 </select>
-                <div id="flags"></div>
             </td>
         </tr>
         <tr>
@@ -81,7 +111,9 @@
         <tr>
             <td><button onclick="videre()" id="videre" class="btn btn-success" disabled>
                 Gå videre med bestillingen</button></td>
-            <td></td>
+            <td>
+                <div id="flags"></div>
+            </td>
         </tr>
     </table>
 </div>

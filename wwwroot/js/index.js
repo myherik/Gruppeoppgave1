@@ -45,6 +45,10 @@ const skalHjem = () => {
   }
 }
 
+const setReise = (reise) => {
+  $(`#ferjestrekning option[value=${reise}]`).attr('selected','selected').change();
+}
+
 const skalBil = () => {
   const check = $("#regCheck").is(":checked");
   $("#regNummer").attr("disabled", !check);
@@ -86,11 +90,13 @@ const validerStrekning = (item) => {
     const flags = $("#flags");
     switch (item.value){
         case "Larvik-Hirtshals":
-        case "Kristiansand-Hirtshals":
-          let string = "<img class='boat' src='./res/SuperSpeed_2.jpg' alt='Danmark flagg'><p></p>" +
-              "<img class='flags' src='./res/Flag_of_Denmark.svg' alt='Danmark flagg'>";
+          let string = "<img class='boat' src='./res/SuperSpeed_2.jpg' alt='Danmark flagg'><p style='max-width: 50%' '>Overfarten med SuperSpeed" +
+              " fra Larvik tar kun 3 timer og 45 minutter. Det lønner seg å bestille tidlig, da sikrer du deg god pris" +
+              " og plass på ønsket avgang. Medlemmer av Color Club får de beste prisene på bilpakke til Danmark.</p>";
           flags.html(string);
           break;
+        case "Kristiansand-Hirtshals":
+          
           
     }
   }
