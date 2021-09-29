@@ -83,6 +83,16 @@ const validerStrekning = (item) => {
     item.classList.add("is-valid");
     bFerjestrekning = true;
     sjekkVidere();
+    const flags = $("#flags");
+    switch (item.value){
+        case "Larvik-Hirtshals":
+        case "Kristiansand-Hirtshals":
+          let string = "<img class='boat' src='./res/SuperSpeed_2.jpg' alt='Danmark flagg'><p></p>" +
+              "<img class='flags' src='./res/Flag_of_Denmark.svg' alt='Danmark flagg'>";
+          flags.html(string);
+          break;
+          
+    }
   }
   else {
     item.classList.remove("is-valid");

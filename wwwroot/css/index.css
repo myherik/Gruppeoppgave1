@@ -14,3 +14,15 @@ nav {
 .highlight {
     color: rgba(255,255,255,1) !important;
 }
+
+.flags {
+    height: 2em;
+    border-radius: 5px;
+    
+}
+.boat {
+    height: 10em;
+}
+#flags {
+    margin: 1rem;
+}
