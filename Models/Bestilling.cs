@@ -8,7 +8,7 @@ namespace Gruppeoppgave1.Models
     {
         public int Id { get; set; }
         [Required]
-        [RegularExpression("^[A-Z][a-z]*[-][A-Z][a-z]*$")]
+        [RegularExpression("^[A-ZÖ][a-zö]*[-][A-ZÖ][a-zö]*$")]
         public string Ferjestrekning { get; set; }
         [RegularExpression("^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$")]
         [Required]

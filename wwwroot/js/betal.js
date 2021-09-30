@@ -19,12 +19,12 @@ const validering = () => {
     const validNavn = regNavn.test(kortholder);
     const validKort = regKort.test(kortnummer);
     const validCvv = regCvv.test(cvv);
-    const validUtlop = (Number(utlop.split("[/]")[1]) + 2000 > new Date().getFullYear()
-            && Number(utlop.split("[/]")[0]) <= 12 
-            && Number(utlop.split("[/]")[0]) > 0) 
-        || (Number(utlop.split("[/]")[1]) + 2000 === new Date().getFullYear() 
-            && Number(utlop.split("[/]")[0]) <= 12 
-            && Number(utlop.split("[/]")[0]) > new Date().getMonth())
+    const validUtlop = (Number(utlop.split("/")[1]) + 2000 > new Date().getFullYear()
+            && Number(utlop.split("/")[0]) <= 12 
+            && Number(utlop.split("/")[0]) > 0) 
+        || (Number(utlop.split("/")[1]) + 2000 === new Date().getFullYear() 
+            && Number(utlop.split("/")[0]) <= 12 
+            && Number(utlop.split("/")[0]) > new Date().getMonth())
     
     if (!validNavn) {
         $("#kortholder")[0].classList.add('is-invalid')
