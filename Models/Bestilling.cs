@@ -15,6 +15,9 @@ namespace Gruppeoppgave1.Models
         public string UtreiseDato { get; set; }
         [RegularExpression("^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$")]
         public string HjemreiseDato { get; set; }
+        public int Pris { get; set; }
+        public string LugarType { get; set; }
+        public int AntallLugarer { get; set; }
         [RegularExpression("^[A-Z]{2}\\s[1-9]{1}[0-9]{4}$")]
         public string Registreringsnummer { get; set; }
         [Required]

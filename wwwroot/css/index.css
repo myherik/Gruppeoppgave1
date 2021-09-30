@@ -14,7 +14,11 @@ nav {
 .highlight {
     color: rgba(255,255,255,1) !important;
 }
-
+#flags {
+    margin: 1rem;
+    display: flex;
+    flex-direction: row;
+}
 .flags {
     object-fit: cover;
     height: 3em;
@@ -27,6 +31,8 @@ nav {
     display: flex;
     flex-direction: row;
     margin-bottom: 2em;
+    max-width: 50%!important;
+    width: 50%!important;
 }
 .reise {
     width: 200px;
@@ -35,10 +41,11 @@ nav {
     height: 10em;
     margin-right: 1em;
 }
-#flags {
-    margin: 1rem;
-    display: flex;
-    flex-direction: row;
+
+#pris {
+    text-align: right;
+    max-width: 50%!important;
+    width: 50%!important;
 }
 
 .trykkemus{
@@ -47,4 +54,9 @@ nav {
 
 td {
     width: 50%!important;
+}
+
+.rad {
+    display: flex;
+    flex-direction: row;
 }

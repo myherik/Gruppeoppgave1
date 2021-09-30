@@ -42,42 +42,47 @@
 </nav>
 
 <div class="container">
-    <div id="reise">
-        <div class="reise">
-            <img onclick="mini('denmark')" src="res/Flag_of_Denmark.svg" alt="Denmark flag" class="flags" data-bs-toggle="collapse" data-bs-target="#collapseDenmark"
-                 aria-expanded="false" aria-controls="collapseDenmark">
-            <div class="collapse" id="collapseDenmark" data-parent="reise">
-                <div class="card card-body">
-                    <p class="trykkemus" onclick="setReise('Larvik-Hirtshals')"
-                       data-bs-toggle="collapse" data-bs-target="#collapseDenmark"
-                       aria-expanded="false" aria-controls="collapseDenmark">Larvik - Hirtshals</p>
-                    <p class="trykkemus" onclick="setReise('Kristiansand-Hirtshals')"
-                       data-bs-toggle="collapse" data-bs-target="#collapseDenmark"
-                       aria-expanded="false" aria-controls="collapseDenmark">Kristiansand - Hirtshals</p>
+    <div class="rad">
+        <div id="reise">
+            <div class="reise">
+                <img onclick="mini('denmark')" src="res/Flag_of_Denmark.svg" alt="Denmark flag" class="flags" data-bs-toggle="collapse" data-bs-target="#collapseDenmark"
+                     aria-expanded="false" aria-controls="collapseDenmark">
+                <div class="collapse" id="collapseDenmark" data-parent="reise">
+                    <div class="card card-body">
+                        <p class="trykkemus" onclick="setReise('Larvik-Hirtshals')"
+                           data-bs-toggle="collapse" data-bs-target="#collapseDenmark"
+                           aria-expanded="false" aria-controls="collapseDenmark">Larvik - Hirtshals</p>
+                        <p class="trykkemus" onclick="setReise('Kristiansand-Hirtshals')"
+                           data-bs-toggle="collapse" data-bs-target="#collapseDenmark"
+                           aria-expanded="false" aria-controls="collapseDenmark">Kristiansand - Hirtshals</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reise">
+                <img onclick="mini('germany')" src="res/Flag_of_Germany.svg" alt="Germany flag" class="flags" data-bs-toggle="collapse" data-bs-target="#collapseGermany"
+                     aria-expanded="false" aria-controls="collapseGermany">
+                <div class="collapse" id="collapseGermany" data-parent="reise">
+                    <div class="card card-body">
+                        <p class="trykkemus" onclick="setReise('Oslo-Kiel')"
+                           data-bs-toggle="collapse" data-bs-target="#collapseGermany"
+                           aria-expanded="false" aria-controls="collapseGermany">Oslo - Kiel</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reise">
+                <img id="sweden" onclick="mini('sweden')" src="res/Flag_of_Sweden.svg" alt="Germany flag" class="flags" data-bs-toggle="collapse" data-bs-target="#collapseSweden"
+                     aria-expanded="false" aria-controls="collapseSweden">
+                <div class="collapse" id="collapseSweden" data-parent="reise">
+                    <div class="card card-body">
+                        <p data-bs-toggle="collapse" data-bs-target="#collapseSweden"
+                           aria-expanded="false" aria-controls="collapseSweden"
+                           class="trykkemus" onclick="setReise('Sandefjord-Strömstad')">Sandefjord - Strömstad</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="reise">
-            <img onclick="mini('germany')" src="res/Flag_of_Germany.svg" alt="Germany flag" class="flags" data-bs-toggle="collapse" data-bs-target="#collapseGermany"
-                 aria-expanded="false" aria-controls="collapseGermany">
-            <div class="collapse" id="collapseGermany" data-parent="reise">
-                <div class="card card-body">
-                    <p class="trykkemus" onclick="setReise('Oslo-Kiel')"
-                       data-bs-toggle="collapse" data-bs-target="#collapseGermany"
-                       aria-expanded="false" aria-controls="collapseGermany">Oslo - Kiel</p>
-                </div>
-            </div>
-        </div>
-        <div class="reise">
-            <img id="sweden" onclick="mini('sweden')" src="res/Flag_of_Sweden.svg" alt="Germany flag" class="flags" data-bs-toggle="collapse" data-bs-target="#collapseSweden"
-                 aria-expanded="false" aria-controls="collapseSweden">
-            <div class="collapse" id="collapseSweden" data-parent="reise">
-                <div class="card card-body">
-                    <p data-bs-toggle="collapse" data-bs-target="#collapseSweden"
-                       aria-expanded="false" aria-controls="collapseSweden"
-                       class="trykkemus" onclick="setReise('Sandefjord-Strömstad')">Sandefjord - Strömstad</p>
-                </div>
-            </div>
+        <div id="pris">
+            <p>Din totalpris blir: <span id="setPris"></span>,- kr</p>
         </div>
     </div>
     <table class="table">
@@ -85,7 +90,7 @@
             <td><label for="ferjestrekning">Ferjestrekning</label></td>
             <td>
                 <select onchange="validerStrekning(this)" class="form-control" name="ferjestrekning" id="ferjestrekning">
-                    <option value="VelgFerjestrekning">Velg ferjestrekning</option>
+                    <option selected disabled value="VelgFerjestrekning">Velg ferjestrekning</option>
                     <option value="Larvik-Hirtshals">Larvik - Hirtshals</option>
                     <option value="Kristiansand-Hirtshals">Kristiansand - Hirtshals</option>
                     <option value="Sandefjord-Strömstad">Sandefjord - Strömstad</option>
@@ -103,14 +108,28 @@
             <input class="form-check-input" onclick="skalHjem()" id="skalHjem" type="checkbox"> Vil ha hjemreise</td>
         </tr>
         <tr>
+            <td><label for="lugar">Velg lugar</label></td>
+            <td>
+                <select onchange="validerLugar(this)" class="form-control" disabled id="lugar">
+                    <option disabled selected>Velg lugar</option>
+                    <option value="3">***</option>
+                    <option value="4">****</option>
+                    <option value="5">*****</option>
+                </select>
+                <input class="form-check-input" onclick="skalLugar()" id="lugarCheck" type="checkbox"> <label
+                    for="lugarCheck">Skal ha lugar</label>
+            </td>
+        </tr>
+        <tr>
             <td><label for="regNummer">Velg bil</label></td>
             <td><input onkeyup="validerRegnummer()" class="form-control" id="regNummer" disabled type="text" placeholder="regnummer her">
-                <input class="form-check-input" onclick="skalBil()" id="regCheck" type="checkbox"> Skal ha bil</td>
+                <input class="form-check-input" onclick="skalBil()" id="regCheck" type="checkbox"> <label
+                        for="regCheck">Skal ha bil</label></td>
         </tr>
         <tr>
             <td><p>Velg antall</p></td>
             <td><label style="margin-right: 5%" for="voksen">Voksen</label>
-                <input onkeyup="validerVoksne(this)" class="form-control" id="voksen" style="margin-right: 5%" type="number"> 
+                <input onkeyup="validerVoksne(this)" onchange="validerVoksne(this)" class="form-control" id="voksen" style="margin-right: 5%" type="number"> 
                 <label style="margin-right: 5%" for="barn">Barn</label>
                 <input onkeyup="validerBarn(this)" class="form-control" id="barn" type="number"></td>
         </tr>

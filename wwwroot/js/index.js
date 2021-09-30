@@ -3,11 +3,61 @@
 let bFerjestrekning = false, bUtreise = false, bVoksne = false, bBarn = true;
 let bHjemreise = false;
 let bRegnummer = false;
+let bLugar = false;
+let bestilling = {}
 
 $(()=>{
-  
+  $("#voksen").val(1).change()
 })
+
+const setPris = () => {
+  let pris = 0;
+  const rute = $("#ferjestrekning").val()
+  switch (rute){
+    case "Larvik-Hirtshals":
+      pris += 300
+      break;
+    case "Kristiansand-Hirtshals":
+      pris += 350
+      break;
+    case "Oslo-Kiel":
+      pris += 700
+      break;
+    case "Sandefjord-Strömstad":
+      pris += 100
+  }
+  
+  let antall_barn = Number($("#barn").val());
+  let antall_voksen = Number($("#voksen").val());
+  let antall_lugarer = Math.ceil((antall_voksen + antall_barn)/4)
+  
+  pris *= antall_voksen + (0.5*antall_barn);
+  
+  const lugar = $("#lugar").val()
+  switch (lugar){
+    case "3":
+      pris +=antall_lugarer*520;
+      break;
+    case "4":
+      pris += antall_lugarer*1550;
+      break;
+    case "5":
+      pris += antall_lugarer*3200;
+      break;
+  }
+  
+  pris += $("#regCheck").is(":checked") ? 700 : 0
+  
+  pris *= $("#skalHjem").is(":checked") ? 2 : 1
+
+  $("#setPris").text(pris)
+      
+  bestilling.pris = pris;
+  bestilling.antallLugarer = antall_lugarer;
+}
+
 const sjekkVidere = () => {
+  setPris()
   if ($("#skalHjem").is(":checked")){
     if (bHjemreise === false){
       $("#videre").attr("disabled", true);
@@ -16,13 +66,20 @@ const sjekkVidere = () => {
     }
   }
   if ($("#regCheck").is(":checked")){
-    if (bRegnummer === false){
+    if (!bRegnummer){
       $("#videre").attr("disabled", true);
       $("#videreLink").attr("href", "#");
       return;
     }
   }
-  if (bFerjestrekning === true && bUtreise == true && bVoksne === true && bBarn === true){
+  if ($("#lugarCheck").is(":checked")){
+    if (!bLugar){
+      $("#videre").attr("disabled", true);
+      $("#videreLink").attr("href", "#");
+      return;
+    }
+  }
+  if (bFerjestrekning && bUtreise && bVoksne && bBarn){
     $("#videre").attr("disabled", false);
   }
   else {
@@ -46,6 +103,8 @@ const skalHjem = () => {
 }
 
 const setReise = (reise) => {
+  //console.log(reise)
+  $('#ferjestrekning option').removeAttr('selected')
   $(`#ferjestrekning option[value=${reise}]`).attr('selected','selected').change();
 }
 
@@ -64,6 +123,22 @@ const skalBil = () => {
   }
 }
 
+const skalLugar = () => {
+  const check = $("#lugarCheck").is(":checked");
+  $("#lugar").attr("disabled", !check);
+  if (!check){
+    $("#lugar").val("Velg lugar");
+    $("#lugar").removeClass("is-valid");
+    $("#lugar").removeClass("is-invalid");
+    bLugar = true;
+    sjekkVidere();
+  }
+  else {
+    bLugar = false;
+    sjekkVidere();
+  }
+}
+
 const videre = () => {
   const inputs = {
     Id: 0,
@@ -71,6 +146,9 @@ const videre = () => {
     UtreiseDato: $("#velgUtreise").val(),
     HjemreiseDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
     Registreringsnummer: $("#regCheck").is(":checked") ? $("#regNummer").val(): null,
+    LugarType: $("#lugar").val(),
+    Pris: bestilling.pris,
+    AntallLugarer: bestilling.antallLugarer,
     reisende: {
       voksne: $("#voksen").val(),
       barn: $("#barn").val()
@@ -91,12 +169,14 @@ const validerStrekning = (item) => {
     let string;
     switch (item.value){
         case "Larvik-Hirtshals":
+          setIngenLugar();
           string = "<img class='boat' src='./res/SuperSpeed_2.jpg' alt='Danmark flagg'><p style='max-width: 50%' '>Overfarten med SuperSpeed" +
               " fra Larvik tar kun 3 timer og 45 minutter. Det lønner seg å bestille tidlig, da sikrer du deg god pris" +
               " og plass på ønsket avgang. Medlemmer av Color Club får de beste prisene på bilpakke til Danmark.</p>";
           flags.html(string);
           break;
       case "Kristiansand-Hirtshals":
+          setIngenLugar();
           string = "<img class='boat' src='./res/SuperSpeed_2.jpg' alt='Danmark flagg'><p style='max-width: 50%' '>Det " +
               "lønner seg å bestille tidlig, da sikrer du deg en god pris og plass på ønsket avgang. Overfarten med " +
               "SuperSpeed fra Kristiansand tar kun 3 timer og 15 minutter. Medlemmer av Color Club får de beste prisene " +
@@ -104,6 +184,9 @@ const validerStrekning = (item) => {
           flags.html(string);
           break;
       case "Oslo-Kiel":
+          $("#lugarCheck").prop('checked', true);
+          $("#lugarCheck").attr('disabled', true);
+          $("#lugar").attr('disabled', false)
           string = "<img class='boat' src='./res/Color_Magic.jpeg' alt='Danmark flagg'><p style='max-width: 50%' '>Det " +
               "lønner seg å bestille tidlig, da sikrer du deg en god pris og plass på ønsket avgang. Overfarten med " +
               "SuperSpeed fra Kristiansand tar kun 3 timer og 15 minutter. Medlemmer av Color Club får de beste prisene " +
@@ -111,6 +194,7 @@ const validerStrekning = (item) => {
           flags.html(string);
           break;
       case "Sandefjord-Strömstad":
+          setIngenLugar();
           string = "<img class='boat' src='./res/Color_Hybrid.jpeg' alt='Danmark flagg'><p style='max-width: 50%' '>Kjør " +
               "bilen om bord og nyt overfarten fra Sandefjord til Strømstad på kun 2 ½ time. Underveis kan du slappe av," +
               " kose deg med et godt måltid og handle taxfree-varer til svært gunstige priser. TIPS! Det lønner seg å " +
@@ -126,6 +210,31 @@ const validerStrekning = (item) => {
     item.classList.remove("is-valid");
     item.classList.add("is-invalid");
     bFerjestrekning = false;
+    sjekkVidere();
+  }
+}
+
+const setIngenLugar = () => {
+  bLugar = true;
+  $("#lugarCheck").attr('disabled', false);
+  $("#lugarCheck").prop('checked', false);
+  $("#lugar").attr('disabled', true);
+  $("#lugar").val("Velg lugar");
+  $("#lugar").removeClass("is-valid");
+  $("#lugar").removeClass("is-invalid");
+}
+
+const validerLugar = (item) => {
+  if (item.value === "3" || item.value === "4" || item.value === "5"){
+    item.classList.remove("is-invalid");
+    item.classList.add("is-valid");
+    bLugar = true;
+    sjekkVidere();
+  }
+  else {
+    item.classList.remove("is-valid");
+    item.classList.add("is-invalid");
+    bLugar = false;
     sjekkVidere();
   }
 }
