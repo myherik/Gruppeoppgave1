@@ -7,9 +7,37 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/index.css">
     <title>Reisende</title>
 </head>
 <body>
+
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #102c66;">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="./res/Color_Line_logo.svg" alt="" style="background-color: white; padding: 5px" height="60px">
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Bestill</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Din bestilling</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 
 <div class="container">
     <h1>Reisende</h1>
@@ -26,7 +54,6 @@
     </table>
     
     <button id="sendBestilling" onclick="sendBestilling()" class="btn btn-success" disabled>Bekreft</button>
-    <span style="margin-left: 5%; color: darkred; font-weight: bold;" id="valideringsmelding"><p>Valideringsmelding</p></span>
 </div>
 
 
