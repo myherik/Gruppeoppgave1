@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<!-- Navbar -->
+
 <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #102c66;">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -38,20 +40,32 @@
     </div>
 </nav>
 
+<!-- Container if order has been completed and payed for this session -->
+
 <div id="harBestilling" class="container">
     <h1>Takk for din bestilling!</h1>
     <h4>Her er utskriften til din bestilling</h4>
+
+    <!-- A table will be generated here. This table will contain all of the relevant data of the order and will be 
+    displayed neatly -->
+    
     <div id="placeBekreftelseHere" class="table-responsive">
 
     </div>
+    
     <p>Det anbefales å møte opp i god tid før avreise. Selv om pass ikke er nødvendig innenfor Schengen, så er dette sterkt anbefalt.</p>
     <p>Vi ønsker deg velkommen om bord hos oss, og en god reise til <span id="placeDestinationHere"></span>!</p>
 </div>
+
+<!-- Container if there is no order found that has been completed this session -->
 
 <div id="harIkkeBestilling" class="container">
     <h1>Hei der!</h1>
     <h4>Det ser ikke ut som at du har noen bestilling enda.</h4>
     <p>Vennligst gå til forsiden for å bestille.</p>
+
+    <!-- Button to take you to bestilling.html -->
+    
     <button onclick="retur()" class="btn btn-primary">Klikk her</button>
 </div>
 
