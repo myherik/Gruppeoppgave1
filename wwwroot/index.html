@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<!-- Navbar -->
+
 <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #102c66;">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -38,12 +40,21 @@
     </div>
 </nav>
 
+<!-- Container that contains everything except navbar -->
+
 <div class="container">
+    
+    <!-- Row with flags that can pick journey and sum of price -->
+    
     <div class="rad">
         <div id="reise">
+
+            <!-- Denmark -->
+            
             <div class="reise">
-                <img  onclick="mini('denmark')" src="res/Flag_of_Denmark.svg" alt="Denmark flag" class="flags trykkemus" data-bs-toggle="collapse" data-bs-target="#collapseDenmark"
-                     aria-expanded="false" aria-controls="collapseDenmark">
+                <img  onclick="mini('denmark')" src="res/Flag_of_Denmark.svg" alt="Denmark flag" class="flags trykkemus"
+                      data-bs-toggle="collapse" data-bs-target="#collapseDenmark"
+                      aria-expanded="false" aria-controls="collapseDenmark">
                 <div class="collapse" id="collapseDenmark" data-parent="reise">
                     <div class="card card-body">
                         <p class="trykkemus" onclick="setReise('Larvik-Hirtshals')"
@@ -55,8 +66,12 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Germany -->
+            
             <div class="reise">
-                <img onclick="mini('germany')" src="res/Flag_of_Germany.svg" alt="Germany flag" class="flags trykkemus" data-bs-toggle="collapse" data-bs-target="#collapseGermany"
+                <img onclick="mini('germany')" src="res/Flag_of_Germany.svg" alt="Germany flag" class="flags trykkemus"
+                     data-bs-toggle="collapse" data-bs-target="#collapseGermany"
                      aria-expanded="false" aria-controls="collapseGermany">
                 <div class="collapse" id="collapseGermany" data-parent="reise">
                     <div class="card card-body">
@@ -66,8 +81,12 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Sweden -->
+            
             <div class="reise">
-                <img id="sweden" onclick="mini('sweden')" src="res/Flag_of_Sweden.svg" alt="Germany flag" class="flags trykkemus" data-bs-toggle="collapse" data-bs-target="#collapseSweden"
+                <img id="sweden" onclick="mini('sweden')" src="res/Flag_of_Sweden.svg" alt="Germany flag"
+                     class="flags trykkemus" data-bs-toggle="collapse" data-bs-target="#collapseSweden"
                      aria-expanded="false" aria-controls="collapseSweden">
                 <div class="collapse" id="collapseSweden" data-parent="reise">
                     <div class="card card-body">
@@ -78,12 +97,21 @@
                 </div>
             </div>
         </div>
+
+        <!-- Price -->
+        
         <div id="pris">
             <p>Din totalpris blir: <span id="setPris"></span>,- kr</p>
         </div>
     </div>
+
+    <!-- Table for the form to fill out information -->
+    
     <table class="table td">
         <tr>
+
+            <!-- Selector for journey -->
+            
             <td><label for="ferjestrekning">Ferjestrekning</label></td>
             <td>
                 <select onchange="validerStrekning(this)" class="form-control trykkemus" name="ferjestrekning" id="ferjestrekning">
@@ -96,15 +124,24 @@
             </td>
         </tr>
         <tr>
+
+            <!-- Pick date to leave -->
+            
             <td><label for="velgUtreise">Velg utreise</label></td>
             <td><input onchange="validerUtreise(this)" class="form-control trykkemus" id="velgUtreise" type="date"></td>
         </tr>
         <tr>
+
+            <!-- Pick date to return -->
+            
             <td><label for="hjemDato">Velg hjemreise</label></td>
             <td><input onchange="validerHjemreise(this)" class="form-control trykkemus" id="hjemDato" disabled type="date">
             <input class="form-check-input trykkemus" onclick="skalHjem()" id="skalHjem" type="checkbox"> Vil ha hjemreise</td>
         </tr>
         <tr>
+
+            <!-- Selector for what type of sleeping accommodation (three to five stars) -->
+            
             <td><label for="lugar">Velg lugar</label></td>
             <td>
                 <select onchange="validerLugar(this)" class="form-control trykkemus" disabled id="lugar">
@@ -118,22 +155,41 @@
             </td>
         </tr>
         <tr>
+
+            <!-- Car yes/no and license plate number -->
+            
             <td><label for="regNummer">Velg bil</label></td>
             <td><input onkeyup="validerRegnummer()" class="form-control" id="regNummer" disabled type="text" placeholder="regnummer her">
                 <input class="form-check-input trykkemus" onclick="skalBil()" id="regCheck" type="checkbox"> <label
                         for="regCheck">Skal ha bil</label></td>
         </tr>
         <tr>
+
+            <!-- Number of passengers -->
+            
             <td><p>Velg antall</p></td>
+
+            <!-- Number of adults -->
+            
             <td><label style="margin-right: 5%" for="voksen">Voksen</label>
-                <input onkeyup="validerVoksne(this)" onchange="validerVoksne(this)" class="form-control" id="voksen" style="margin-right: 5%" type="number"> 
+                <input onkeyup="validerVoksne(this)" onchange="validerVoksne(this)" class="form-control" id="voksen"
+                       style="margin-right: 5%" type="number">
+
+                <!-- Number of children -->
+                
                 <label style="margin-right: 5%" for="barn">Barn</label>
                 <input onkeyup="validerBarn(this)" class="form-control" id="barn" type="number"></td>
         </tr>
         <tr>
+
+            <!-- Button to move on with the order -->
+            
             <td><button onclick="videre()" id="videre" class="btn btn-success" disabled>
                 Gå videre med bestillingen</button></td>
             <td>
+
+                <!-- Placing some information about the journey here -->
+                
                 <div id="flags"></div>
             </td>
         </tr>
