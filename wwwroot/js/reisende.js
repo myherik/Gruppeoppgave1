@@ -1,6 +1,3 @@
-
-let bestilling;
-
 $(()=>{
     bestilling = JSON.parse(localStorage.getItem("formData"))
     if (bestilling == null){
@@ -10,6 +7,7 @@ $(()=>{
     setReisende();
     formaterTable();
 })
+let bestilling;
 let reisendeVoksen = [];
 let reisendeBarn = [];
 
