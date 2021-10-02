@@ -1,3 +1,6 @@
+
+/* CSS for navbar */
+
 nav {
     padding: 0!important;
     margin-bottom: 20px;
@@ -11,6 +14,7 @@ nav {
     color: rgba(255,255,255,1) !important;
 }
 
+/* CSS for flag destination picker */
 #flags {
     margin: 1rem;
     display: flex;
@@ -32,13 +36,9 @@ nav {
     max-width: 50%!important;
     width: 50%!important;
 }
+
 .reise {
     width: 200px;
-}
-
-.boat {
-    height: 10em;
-    margin-right: 1em;
 }
 
 #pris {
@@ -51,9 +51,20 @@ nav {
     cursor: pointer;
 }
 
+/* CSS for information about journey  */
+
+.boat {
+    height: 10em;
+    margin-right: 1em;
+}
+
+/* CSS for table with details of travel */
+
 .td td {
     width: 50%!important;
 }
+
+/* General CSS for positioning and flex */
 
 .rad {
     display: flex;
@@ -68,9 +79,6 @@ nav {
 .rom {
     padding: .5em;
 }
-.line-height {
-    height: 2.4rem;
-}
 
 .flex-center {
     height: 100%;
@@ -78,6 +86,7 @@ nav {
     align-items: center;
 }
 
+/* CSS for space in reisende.html */
 #reisende *{
     margin-bottom: 1rem;
 }
