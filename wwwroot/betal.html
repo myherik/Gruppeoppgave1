@@ -12,29 +12,66 @@
 </head>
 <body>
 
+<!-- Container for everything in body -->
+
 <div class="container" style="height: 100vh; justify-content: center; display: flex">
+
+    <!-- Payment in a card design -->
+    
     <div class="card" style="width: 18rem; margin: auto">
         <div class="card-body">
             <h5 class="card-title rom">Betal</h5>
             <h6 id="visPris" class="card-subtitle mb-2 text-muted rom">Card subtitle</h6>
+
+            <!-- Form starts here -->
+            
             <div class="card-text column" >
-                <div class="column rom" id="cardholder"><label for="kortholder">Kortholders navn</label><input class="form-control" id="kortholder" type="text"></div>
-                <div class="column rom" id="cardnumber"><label for="kortnummer">Kortnummer</label><input class="form-control" id="kortnummer" type="text"></div>
+
+                <!-- Name of cardholder -->
+                
+                <div class="column rom" id="cardholder"><label for="kortholder">Kortholders navn</label>
+                    <input class="form-control" id="kortholder" type="text">
+                </div>
+
+                <!-- Number on card -->
+                
+                <div class="column rom" id="cardnumber"><label for="kortnummer">Kortnummer</label>
+                    <input class="form-control" id="kortnummer" type="text">
+                </div>
+
+                <!-- Valid thru date and CVV row -->
+                
                 <div class="column rom" id="security">
                     <div class="rad" style="justify-content: space-between">
                         <div class="column">
                             <label for="dato">Utløpsdato</label>
                             <div class="input-group mb-3" id="dato">
-                                <input onkeyup="sendAar(event)" class="form-control" placeholder="mm" maxlength="2" size="2" type="text" id="maaned" >
+
+                                <!-- month -->
+                                
+                                <input onkeyup="sendAar(event)" class="form-control" placeholder="mm"
+                                       maxlength="2" size="2" type="text" id="maaned" >
+                                
                                 <span class="input-group-text">/</span>
-                                <input onkeyup="sendMaaned(event)" class="form-control" type="text" maxlength="2" size="2" placeholder="yy" id="aar">
+
+                                <!-- year -->
+                                
+                                <input onkeyup="sendMaaned(event)" class="form-control" type="text"
+                                       maxlength="2" size="2" placeholder="yy" id="aar">
                             </div>
                         </div>
                         <div class="column">
+
+                            <!-- CVV -->
+                            
                             <label for="cvv">CVV</label><input class="form-control" type="text" id="cvv" maxlength="3" size="3">
                         </div>
                     </div>
                 </div>
+
+                <!-- Button to proceed and complete payment
+                 this button takes you to bekreftelse.html and saves your order to the DB -->
+                
                 <div class="column rom" style="justify-content: flex-end">
                     <button id="btn-betal" class="btn btn-success" onclick="betal()" style="width: fit-content;">Betal</button>
                 </div>
