@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<!-- Navbar -->
+
 <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #102c66;">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -38,35 +40,65 @@
     </div>
 </nav>
 
+<!-- Container that contains the standard view -->
 
 <div class="container flex-center column" id="personer">
     <h2>Hvem reiser?</h2>
     <h5>Fyll ut all nødvendig informasjon om de som reiser</h5>
     
+    <!-- For each traveller an object is placed here to be filled out
+     By clicking on any of the objects you will be given html to fill out information -->
+    
     <div class="column" id="reisende"></div>
+    
+    <!-- Button to proceed to payment once all necessary information has been filled out -->
     
     <button disabled onclick="sendBestilling()" id="bestill" class="btn btn-outline-primary">Bestill</button>
 </div>
 
+<!-- This is the html shown when having clicked a traveller object -->
+
 <div hidden class="container flex-center column" id="input-felter">
+    
+    <!-- Table as form to fill out -->
+    
     <table class="table">
         <tbody>
         <tr>
+            
+            <!-- First name -->
+            
             <td><label for="fornavn">Fornavn</label></td>
             <td><input class="form-control" type="text" id="fornavn"></td>
         </tr>
         <tr>
+
+            <!-- Last name -->
+            
             <td><label for="etternavn">Etternavn</label></td>
             <td><input class="form-control" type="text" id="etternavn"></td>
         </tr>
         <tr>
+
+            <!-- Date of birth -->
+            
             <td><label for="dato">Fødselsdato</label></td>
             <td><input  class="form-control" type="date" id="dato"></td>
         </tr>
         </tbody>
     </table>
+
+    <!-- Row for buttons to cancel or to save person information
+     Both buttons will lead you back to initial view -->
+    
     <div class="rad">
+
+        <!-- Sav person button disabled until all information is filled out AND valid -->
+        
         <button disabled id="lagre" class="btn btn-primary">Lagre person</button>
+
+        <!-- Cancel button -->
+        
         <button onclick="avbryt()" class="btn btn-secondary">Avbryt</button>
     </div>
 </div>
