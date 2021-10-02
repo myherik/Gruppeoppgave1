@@ -72,3 +72,17 @@ nav {
 .line-height {
     height: 2.4rem;
 }
+
+.flex-center {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+#reisende *{
+    margin-bottom: 1rem;
+}
+
+#input-felter {
+    margin-top: 10%;
+}
