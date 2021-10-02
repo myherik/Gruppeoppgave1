@@ -1,5 +1,8 @@
 $(() => {
     bestilling = JSON.parse(localStorage.getItem("betal"));
+    if (bestilling == null){
+        window.location.href = "reisende.html";
+    }
     $("#visPris").html(`Du skal betale ${bestilling.Pris},-\n til Color Line`)
 })
 
@@ -8,7 +11,8 @@ let bestilling;
 const validering = () => {
     const kortholder = $("#kortholder").val()
     const kortnummer = $("#kortnummer").val()
-    const utlop = $("#dato").val()
+    const utlopM = $("#maaned").val()
+    const utlopA = $("#aar").val()
     const cvv = $("#cvv").val()
 
 
@@ -19,12 +23,12 @@ const validering = () => {
     const validNavn = regNavn.test(kortholder);
     const validKort = regKort.test(kortnummer);
     const validCvv = regCvv.test(cvv);
-    const validUtlop = (Number(utlop.split("/")[1]) + 2000 > new Date().getFullYear()
-            && Number(utlop.split("/")[0]) <= 12 
-            && Number(utlop.split("/")[0]) > 0) 
-        || (Number(utlop.split("/")[1]) + 2000 === new Date().getFullYear() 
-            && Number(utlop.split("/")[0]) <= 12 
-            && Number(utlop.split("/")[0]) > new Date().getMonth())
+    const validUtlop = (Number(utlopA) + 2000 > new Date().getFullYear()
+            && Number(utlopM) <= 12 
+            && Number(utlopM) > 0) 
+        || (Number(utlopA) + 2000 === new Date().getFullYear() 
+            && Number(utlopM) <= 12 
+            && Number(utlopM) > new Date().getMonth())
     
     if (!validNavn) {
         $("#kortholder")[0].classList.add('is-invalid')
@@ -45,9 +49,11 @@ const validering = () => {
     }
 
     if (!validUtlop) {
-        $("#dato")[0].classList.add('is-invalid')
+        $("#aar")[0].classList.add('is-invalid')
+        $("#maaned")[0].classList.add('is-invalid')
     } else {
-        $("#dato")[0].classList.remove('is-invalid')
+        $("#aar")[0].classList.remove('is-invalid')
+        $("#maaned")[0].classList.remove('is-invalid')
     }
     
     return validNavn && validKort && validUtlop && validCvv;
@@ -56,6 +62,7 @@ const validering = () => {
 const betal = () => {
 
     if (validering()) {
+        $("#btn-betal").attr('disabled', true);
         $.ajax({
             url: "/api/Bestilling",
             type: "POST",
@@ -63,9 +70,22 @@ const betal = () => {
             data: JSON.stringify(bestilling),
             success: data => {
                 console.log(data);
-                localStorage.setItem("ordre", JSON.stringify(data))
+                localStorage.removeItem("betal");
+                sessionStorage.setItem("ordre", JSON.stringify(data))
                 window.location.href = "/bekreftelse.html";
             },
         })
+    }
+}
+const tall = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'ArrowRight']
+const sendAar = (event) => {
+    if ($("#maaned").val().length === 2 && tall.includes(event.key)){
+        $("#aar").focus();
+    }
+}
+
+const sendMaaned = (event) => {
+    if ($("#aar").val().length === 0 && (event.key === 'Backspace' || event.key === 'ArrowLeft')){
+        $("#maaned").focus();
     }
 }

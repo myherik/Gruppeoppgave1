@@ -52,7 +52,7 @@ nav {
     cursor: pointer;
 }
 
-td {
+.td td {
     width: 50%!important;
 }
 
@@ -68,4 +68,7 @@ td {
 
 .rom {
     padding: .5em;
+}
+.line-height {
+    height: 2.4rem;
 }

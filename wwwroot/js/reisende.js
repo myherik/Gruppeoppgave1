@@ -6,7 +6,9 @@ $(()=>{
     console.log(bestilling);
     formatTable();
     setReisende();
-    //localStorage.clear();
+    if (bestilling == null){
+        window.location.href = "index.html";
+    }
 })
 let reisendeVoksen = [];
 let reisendeBarn = [];
@@ -163,7 +165,7 @@ const sjekk = () => {
 const sendBestilling = () => {
     bestilling.voksne = reisendeVoksen;
     bestilling.barn = reisendeBarn;
-    //localStorage.setItem("id", bestilling.Id);
+    localStorage.removeItem("formData");
     localStorage.setItem("betal", JSON.stringify(bestilling));
     
     window.location.href="/betal.html"

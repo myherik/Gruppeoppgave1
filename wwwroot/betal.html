@@ -23,7 +23,12 @@
                 <div class="column rom" id="security">
                     <div class="rad" style="justify-content: space-between">
                         <div class="column">
-                            <label for="dato">Utløpsdato</label><input class="form-control" placeholder="mm/yy" maxlength="5" size="5" type="text" id="dato">
+                            <label for="dato">Utløpsdato</label>
+                            <div class="input-group mb-3" id="dato">
+                                <input onkeyup="sendAar(event)" class="form-control" placeholder="mm" maxlength="2" size="2" type="text" id="maaned" >
+                                <span class="input-group-text">/</span>
+                                <input onkeyup="sendMaaned(event)" class="form-control" type="text" maxlength="2" size="2" placeholder="yy" id="aar">
+                            </div>
                         </div>
                         <div class="column">
                             <label for="cvv">CVV</label><input class="form-control" type="text" id="cvv" maxlength="3" size="3">
@@ -31,7 +36,7 @@
                     </div>
                 </div>
                 <div class="column rom" style="justify-content: flex-end">
-                    <button class="btn btn-success" onclick="betal()" style="width: fit-content;">Betal</button>
+                    <button id="btn-betal" class="btn btn-success" onclick="betal()" style="width: fit-content;">Betal</button>
                 </div>
             </div>
         </div>

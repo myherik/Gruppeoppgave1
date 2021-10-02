@@ -7,13 +7,52 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/index.css">
     <title>bekreftelse</title>
 </head>
 <body>
 
-<div class="conatainer">
-    <h1>Bekreftelse:</h1>
-    <div id="placeBekreftelseHere"></div>
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #102c66;">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="./res/Color_Line_logo.svg" alt="" style="background-color: white; padding: 5px" height="60px">
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Bestill</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link highlight">Din bestilling</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="harBestilling" class="container">
+    <h1>Takk for din bestilling!</h1>
+    <h4>Her er utskriften til din bestilling</h4>
+    <div id="placeBekreftelseHere" class="table-responsive">
+
+    </div>
+    <p>Det anbefales å møte opp i god tid før avreise. Selv om pass ikke er nødvendig innenfor Schengen, så er dette sterkt anbefalt.</p>
+    <p>Vi ønsker deg velkommen om bord hos oss, og en god reise til <span id="placeDestinationHere"></span>!</p>
+</div>
+
+<div id="harIkkeBestilling" class="container">
+    <h1>Hei der!</h1>
+    <h4>Det ser ikke ut som at du har noen bestilling enda.</h4>
+    <p>Vennligst gå til forsiden for å bestille.</p>
+    <button onclick="retur()" class="btn btn-primary">Klikk her</button>
 </div>
 
 
