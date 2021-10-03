@@ -30,7 +30,7 @@ const placeOrdre = (ordre) => {
     const lugarString = ordre.lugarType == null ? "Ingen": ordre.lugarType + ` x${ordre.antallLugarer}`;
     const hjemreiseString = ordre.hjemreiseDato == null ? "Ingen": ordre.hjemreiseDato;
     const bilString = ordre.registreringsnummer == null ? "Ingen": ordre.registreringsnummer;
-    let out = `<table class="table table-striped table-bordered align-middle table-fixed"><thead></thead><tbody>` +
+    let out = `<table class="table table-striped table-bordered align-middle table-fixed bekreftelse-media"><thead></thead><tbody>` +
         `<tr>` +
         `<td>Navn på bestilling</td><td>${ordre.voksne[0].fornavn} ${ordre.voksne[0].etternavn}</td>` +
         `<td>Antall reisende</td><td>${ordre.voksne.length + ordre.barn.length}</td>` +

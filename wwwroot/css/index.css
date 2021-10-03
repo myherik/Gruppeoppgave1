@@ -99,7 +99,11 @@ nav {
     margin-top: 10%;
 }
 
+/* Media queries to make the site more responsive */
+
 @media only screen and (max-width: 1200px){
+    
+    /* By doing this we can effectively put the second column under the first one */
     
     #flags{
         margin: 0;
@@ -120,7 +124,7 @@ nav {
 @media only screen and (max-width: 770px){
     
     /*
-    
+        Burger (mobile) menu starts aproximately here and requires some more fine adjustments
      */
     
     #flags{
@@ -151,4 +155,28 @@ nav {
     .td td {
         width: inherit!important;
     }
+}
+
+@media only screen and (max-width: 575px) {
+    
+    /* Adjustments for bekreftelse.html */
+    
+    /*
+    
+    .bekreftelse-media tr {
+        width: 100% !important;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .bekreftelse-media td {
+        display: flex;
+        max-width: 200% !important;
+        width: 200% !important;
+    }
+    
+     */
+    
+    
+    
 }
