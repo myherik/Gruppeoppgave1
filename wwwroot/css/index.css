@@ -98,3 +98,71 @@ nav {
 #input-felter {
     margin-top: 10%;
 }
+
+@media only screen and (max-width: 1200px){
+    /*
+    #flags{
+        flex-direction: column;
+    }
+    .boat{
+        width: 100%;
+        height: auto!important;
+        margin-right: 0;
+    }
+    #flags p {
+        max-width: 100%!important;
+    }
+    
+     */
+    
+    #flags{
+        margin: 0;
+    }
+    
+    .align-under{
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .align-under td {
+        width: 200% !important;
+        max-width: 200% !important;
+    }
+}
+
+@media only screen and (max-width: 770px){
+    
+    /*
+    
+     */
+    
+    #flags{
+        flex-direction: column;
+    }
+    .boat{
+        width: 100%;
+        height: auto!important;
+        margin-right: 0;
+    }
+    #flags p {
+        max-width: 100%!important;
+    }
+
+    tr{
+        display: flex;
+        flex-direction: column;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    tr td {
+        width: 200% !important;
+        max-width: 200% !important;
+    }
+    .align-under td {
+        width: inherit!important;
+    }
+    .td td {
+        width: inherit!important;
+    }
+}
