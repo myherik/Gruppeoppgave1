@@ -86,6 +86,10 @@ nav {
     align-items: center;
 }
 
+.space-between {
+    justify-content: space-between;
+}
+
 /* CSS for space in reisende.html */
 #reisende *{
     margin-bottom: 1rem;

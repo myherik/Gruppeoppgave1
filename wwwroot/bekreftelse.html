@@ -60,13 +60,31 @@
 <!-- Container if there is no order found that has been completed this session -->
 
 <div id="harIkkeBestilling" class="container">
-    <h1>Hei der!</h1>
-    <h4>Det ser ikke ut som at du har noen bestilling enda.</h4>
-    <p>Vennligst gå til forsiden for å bestille.</p>
+    <div class="rad space-between">
+        <div class="column">
+            <h1>Hei der!</h1>
+            <h4>Det ser ikke ut som at du har noen bestilling enda.</h4>
+            <p>Vennligst gå til forsiden for å bestille.</p>
 
-    <!-- Button to take you to bestilling.html -->
+            <!-- Button to take you to bestilling.html -->
+
+            <button onclick="retur()" class="btn btn-primary">Klikk her</button> 
+        </div>
+        
+        <!-- Column for input of reference code to retrieve an order -->
+        
+        <div class="column mt-5">
+            <h4>Har du en bestillingsreferanse?</h4>
+            <p>sett den inn her for å se din bestilling</p>
+            <div class="input-group">
+                <label for="refereansekode"></label><input class="form-control" type="text" id="refereansekode">
+                <button onclick="referansebestilling()" class="btn btn-success" id="btnReferanse">Hent bestilling</button>
+            </div>
+                
+            
+        </div>
+    </div>
     
-    <button onclick="retur()" class="btn btn-primary">Klikk her</button>
 </div>
 
 
