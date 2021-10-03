@@ -32,17 +32,18 @@ const setReisende = () => {
 
 const formaterTable = () => {
     const el = $("#reisende")
-    let string = `<button onclick='setVoksen(0, this)' class='btn btn-outline-secondary'>Kontaktpersion 18+</button>`;
+    let string = `<button onclick='setVoksen(0, this, "Kontaktperson 18+")' class='btn btn-outline-secondary'>Kontaktperson 18+</button>`;
     for (let i = 1; i < Number(bestilling.reisende.voksne); i++) {
-        string += `<button onclick='setVoksen(${i}, this)' class='btn btn-outline-secondary'>Reisende 18+ ${i+1}</button>`
+        string += `<button onclick='setVoksen(${i}, this, "Reisende 18+ ${i+1}")' class='btn btn-outline-secondary'>Reisende 18+ ${i+1}</button>`
     }
     for (let i = 0; i < Number(bestilling.reisende.barn); i++) {
-        string += `<button onclick='setBarn(${i}, this)' class='btn btn-outline-secondary'>Reisende barn ${i+1}</button>`
+        string += `<button onclick='setBarn(${i}, this, "Reisende barn ${i+1}")' class='btn btn-outline-secondary'>Reisende barn ${i+1}</button>`
     }
     el.html(string)
 }
 
-const setVoksen = (index, item) => {
+const setVoksen = (index, item, typePerson) => {
+    $("#typePerson").text(typePerson.toLowerCase())
     console.log(index)
     const fornavn = $("#fornavn")
     fornavn.val(reisendeVoksen[index].fornavn)
@@ -81,7 +82,8 @@ const setVoksen = (index, item) => {
     })
 }
 
-const setBarn = (index, item) => {
+const setBarn = (index, item, typePerson) => {
+    $("#typePerson").text(typePerson.toLowerCase())
     console.log(index)
     const fornavn = $("#fornavn")
     fornavn.val(reisendeBarn[index].fornavn)

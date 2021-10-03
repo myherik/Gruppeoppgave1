@@ -75,6 +75,7 @@ const referansebestilling = (id) => {
         error: (error) => {
             if (error.status === 404) {
                 $("#feil").text(error.responseText);
+                $("#feilNy").text(error.responseText);
             }
             //console.log(error)
         }

@@ -52,7 +52,7 @@ namespace Gruppeoppgave1.Controllers
                 return Ok(bestilling);
             }
 
-            return NotFound($"Bestilling ikke funnet på referenase: {referanse}");
+            return NotFound($"Bestilling ikke funnet på referanse: {referanse}");
         }
 
         [HttpPost]
