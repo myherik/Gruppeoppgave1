@@ -30,7 +30,7 @@ const placeOrdre = (ordre) => {
     const lugarString = ordre.lugarType == null ? "Ingen": ordre.lugarType + ` x${ordre.antallLugarer}`;
     const hjemreiseString = ordre.hjemreiseDato == null ? "Ingen": ordre.hjemreiseDato;
     const bilString = ordre.registreringsnummer == null ? "Ingen": ordre.registreringsnummer;
-    let out = `<table class="table table-striped table-bordered align-middle table-fixed bekreftelse-media"><thead></thead><tbody>` +
+    let out = `<table class="table table-striped table-bordered align-middle bekreftelse-media hidden-lg">` +
         `<tr>` +
         `<td>Navn på bestilling</td><td>${ordre.voksne[0].fornavn} ${ordre.voksne[0].etternavn}</td>` +
         `<td>Antall reisende</td><td>${ordre.voksne.length + ordre.barn.length}</td>` +
@@ -45,7 +45,33 @@ const placeOrdre = (ordre) => {
         `<td>Totalt betalt</td><td>${ordre.pris},- kr.</td><td>Bil</td><td>${bilString}</td>` +
         `</tr>`;
     
-    out += "</tbody></table>";
+    out += "</table>";
+    
+    // Table for smaller screens
+    
+    out += `<table class="table table-striped table-bordered align-middle bekreftelse-media hidden-sm">` +
+        `<tr>` +
+        `<td>Navn på bestilling</td><td>${ordre.voksne[0].fornavn} ${ordre.voksne[0].etternavn}</td>` +
+        `</tr><tr>` +
+        `<td>Antall reisende</td><td>${ordre.voksne.length + ordre.barn.length}</td>` +
+        `</tr>` +
+        `<tr>` +
+        `<td>Rute</td><td>${ordre.ferjestrekning}</td>` +
+        `</tr><tr>` +
+        `<td>Lugar</td><td>${lugarString}</td>` +
+        `</tr>` +
+        `<tr>` +
+        `<td>Avreise</td><td>${ordre.utreiseDato}</td>` +
+        `</tr><tr>` +
+        `<td>Hjemreise</td><td>${hjemreiseString}</td>` +
+        `</tr>` +
+        `<tr>` +
+        `<td>Bil</td><td>${bilString}</td>` +
+        `</tr><tr>` +
+        `<td>Totalt betalt</td><td>${ordre.pris},- kr.</td>` +
+        `</tr>`;
+    
+    out += "</table>";
     
     table.html(out);
     placeDestination(ordre);

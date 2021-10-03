@@ -51,6 +51,10 @@ nav {
     cursor: pointer;
 }
 
+.flag-sm {
+    display: none;
+}
+
 /* CSS for information about journey  */
 
 .boat {
@@ -90,6 +94,20 @@ nav {
     justify-content: space-between;
 }
 
+.referanse-media {
+    max-width: 100rem;
+    width: 50%;
+}
+
+.referanse-media2 {
+    max-width: 100%;
+    width: 100%;
+}
+
+#btn-retur {
+    max-width: 250px;
+}
+
 /* CSS for space in reisende.html */
 #reisende *{
     margin-bottom: 1rem;
@@ -97,6 +115,12 @@ nav {
 
 #input-felter {
     margin-top: 10%;
+}
+
+/* Table for small */
+
+.hidden-sm {
+    display: none;
 }
 
 /* Media queries to make the site more responsive */
@@ -118,6 +142,18 @@ nav {
     .align-under td {
         width: 200% !important;
         max-width: 200% !important;
+    }
+}
+
+@media only screen and (max-width: 990px) {
+    
+    /* Minor changes to the inputs */
+    
+    .media-column {
+        flex-direction: column!important;
+    }
+    .referanse-media2 {
+        max-width: 350px;
     }
 }
 
@@ -155,27 +191,38 @@ nav {
     .td td {
         width: inherit!important;
     }
+    
+    
+    /* Removing flags ability to expand with travelling routes */
+    
+    .flag-lg {
+        display: none;
+    }
+    .flag-sm {
+        display: initial;
+    }
+    
+    
 }
 
 @media only screen and (max-width: 575px) {
     
     /* Adjustments for bekreftelse.html */
     
-    /*
-    
-    .bekreftelse-media tr {
+    .referanse-media {
+        max-width: 350px !important;
         width: 100% !important;
-        display: flex;
-        flex-direction: row;
     }
     
-    .bekreftelse-media td {
-        display: flex;
-        max-width: 200% !important;
-        width: 200% !important;
+    .hidden-lg {
+        display: none;
     }
-    
-     */
+    .hidden-sm {
+        display: table;
+    }
+    .hidden-sm tr {
+        width: 100% !important;
+    }
     
     
     
