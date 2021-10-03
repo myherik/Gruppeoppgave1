@@ -109,7 +109,7 @@
     <!-- Table for the form to fill out information -->
     
     <table class="table td">
-        <tr>
+        <tr class="index-media">
 
             <!-- Selector for journey -->
             
@@ -124,14 +124,14 @@
                 </select>
             </td>
         </tr>
-        <tr>
+        <tr class="index-media">
 
             <!-- Pick date to leave -->
             
             <td><label for="velgUtreise">Velg utreise</label></td>
             <td><input onchange="validerUtreise(this)" class="form-control trykkemus" id="velgUtreise" type="date"></td>
         </tr>
-        <tr>
+        <tr class="index-media">
 
             <!-- Pick date to return -->
             
@@ -139,7 +139,7 @@
             <td><input onchange="validerHjemreise(this)" class="form-control trykkemus" id="hjemDato" disabled type="date">
             <input class="form-check-input trykkemus" onclick="skalHjem()" id="skalHjem" type="checkbox"> Vil ha hjemreise</td>
         </tr>
-        <tr>
+        <tr class="index-media">
 
             <!-- Selector for what type of sleeping accommodation (three to five stars) -->
             
@@ -155,7 +155,7 @@
                     for="lugarCheck">Skal ha lugar</label>
             </td>
         </tr>
-        <tr>
+        <tr class="index-media">
 
             <!-- Car yes/no and license plate number -->
             
@@ -164,7 +164,7 @@
                 <input class="form-check-input trykkemus" onclick="skalBil()" id="regCheck" type="checkbox"> <label
                         for="regCheck">Skal ha bil</label></td>
         </tr>
-        <tr>
+        <tr class="index-media">
 
             <!-- Number of passengers -->
             
@@ -181,7 +181,7 @@
                 <label style="margin-right: 5%" for="barn">Barn</label>
                 <input onkeyup="validerBarn(this)" class="form-control" id="barn" type="number"></td>
         </tr>
-        <tr class="align-under">
+        <tr class="align-under index-media">
 
             <!-- Button to move on with the order -->
             
