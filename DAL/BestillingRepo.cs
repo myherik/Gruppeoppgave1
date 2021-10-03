@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Gruppeoppgave1.Models;
@@ -26,8 +27,32 @@ namespace Gruppeoppgave1.DAL
             return bestilling;
         }
 
+        public async Task<Bestilling> HentEnByRef(string referanse)
+        {
+            var bestilling = await _db.Bestillinger
+                .FirstOrDefaultAsync(b => b.Referanse == referanse);
+
+            return bestilling;
+
+        }
+
         public async Task<Bestilling> LeggTil(Bestilling bestilling)
         {
+            // teste for unik Refereanse
+            bool uniq = false;
+            int teller = 0;
+            do
+            {
+                uniq = _db.Bestillinger
+                    .FirstOrDefaultAsync(b => b.Referanse == bestilling.Referanse).Result == null;
+                if (!uniq)
+                {
+                    bestilling.Referanse = Guid.NewGuid().ToString().Split("-")[0];
+                    teller++;
+                }
+            } while (!uniq);
+            Console.WriteLine($"--> Vi må loope {teller} ganger");
+            
             _db.Bestillinger.Add(bestilling);
             await _db.SaveChangesAsync();
             return bestilling;

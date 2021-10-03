@@ -43,10 +43,23 @@ namespace Gruppeoppgave1.Controllers
             return NotFound();
         }
         
+        [HttpGet("ref/{referanse}")]
+        public async Task<ActionResult> HentBestillingByRef(string referanse)
+        {
+            var bestilling = await _db.HentEnByRef(referanse);
+            if (bestilling != null)
+            {
+                return Ok(bestilling);
+            }
+
+            return NotFound($"Bestilling ikke funnet på referenase: {referanse}");
+        }
+
         [HttpPost]
         public async Task<ActionResult> AddBestilling([FromBody]Bestilling bestilling)
         {
             _log.LogInformation($"AddBestilling({bestilling})");
+            bestilling.Referanse = Guid.NewGuid().ToString().Split("-")[0];
             var returBestilling = await _db.LeggTil(bestilling);
 
             return CreatedAtRoute(nameof(HentBestilling), new {Id = returBestilling.Id}, returBestilling);

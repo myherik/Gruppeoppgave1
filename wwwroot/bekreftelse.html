@@ -44,7 +44,7 @@
 
 <div id="harBestilling" class="container">
     <h1>Takk for din bestilling!</h1>
-    <h4>Her er utskriften til din bestilling</h4>
+    <h4>Her er utskriften til din bestilling med referanse: <span id="ref"></span></h4>
 
     <!-- A table will be generated here. This table will contain all of the relevant data of the order and will be 
     displayed neatly -->
@@ -55,6 +55,17 @@
     
     <p>Det anbefales å møte opp i god tid før avreise. Selv om pass ikke er nødvendig innenfor Schengen, så er dette sterkt anbefalt.</p>
     <p>Vi ønsker deg velkommen om bord hos oss, og en god reise til <span id="placeDestinationHere"></span>!</p>
+
+    <div class="column mt-5 ">
+        <h4>Har du en bestillingsreferanse?</h4>
+        <p>sett den inn her for å se din bestilling</p>
+        <div class="input-group" style="max-width: 100rem; width: 50%">
+            <label for="refereansekodeNy"></label><input class="form-control" size="8" maxlength="8" type="text" id="refereansekodeNy">
+            <button onclick="referansebestilling('refereansekodeNy')" class="btn btn-success" >Hent bestilling</button>
+        </div>
+        <p id="" style="color: red"></p>
+
+    </div>
 </div>
 
 <!-- Container if there is no order found that has been completed this session -->
@@ -78,9 +89,9 @@
             <p>sett den inn her for å se din bestilling</p>
             <div class="input-group">
                 <label for="refereansekode"></label><input class="form-control" type="text" id="refereansekode">
-                <button onclick="referansebestilling()" class="btn btn-success" id="btnReferanse">Hent bestilling</button>
+                <button onclick="referansebestilling('refereansekode')" class="btn btn-success" id="btnReferanse">Hent bestilling</button>
             </div>
-                
+            <p id="feil" style="color: red"></p>
             
         </div>
     </div>

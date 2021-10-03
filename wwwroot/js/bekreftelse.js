@@ -11,6 +11,20 @@ $(() => {
     
 })
 
+const refresh = (ordre) => {
+    //const ordre = JSON.parse(sessionStorage.getItem("ordre"));
+    sessionStorage.setItem('ordre', JSON.stringify(ordre))
+    if (ordre != null){
+        $("#harIkkeBestilling").attr("hidden", true);
+        $("#harBestilling").attr("hidden", false)
+        placeOrdre(ordre);
+    }
+    else {
+        $("#harBestilling").attr("hidden", true)
+        $("#harIkkeBestilling").attr("hidden", false);
+    }
+}
+
 const placeOrdre = (ordre) => {
     const table = $("#placeBekreftelseHere");
     const lugarString = ordre.lugarType == null ? "Ingen": ordre.lugarType + ` x${ordre.antallLugarer}`;
@@ -35,11 +49,36 @@ const placeOrdre = (ordre) => {
     
     table.html(out);
     placeDestination(ordre);
+    placeReferanse(ordre.referanse)
 }
 
 const placeDestination = (ordre) => {
     const destination = ordre.ferjestrekning.split('-')[1];
     $("#placeDestinationHere").text(destination);
+}
+
+const placeReferanse = (referanse) => {
+    $("#ref").text(referanse)
+}
+
+const referansebestilling = (id) => {
+    const referanse = $(`#${id}`).val()
+    const url = ("api/bestilling/ref/" + referanse).toLowerCase();
+    
+    $.ajax({
+        url: url,
+        method: "GET",
+        success: (data) => {
+            refresh(data)
+            //console.log(data)
+        },
+        error: (error) => {
+            if (error.status === 404) {
+                $("#feil").text(error.responseText);
+            }
+            //console.log(error)
+        }
+    })
 }
 
 const retur = () => {

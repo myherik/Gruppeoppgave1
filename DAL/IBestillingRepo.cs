@@ -11,6 +11,8 @@ namespace Gruppeoppgave1.DAL
 
         Task<Bestilling> HentEn(int id);
 
+        Task<Bestilling> HentEnByRef(string referanse);
+
         Task<Bestilling> LeggTil(Bestilling bestilling);
 
         Task Endre(int id, Kunde kunde);

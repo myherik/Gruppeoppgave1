@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
@@ -7,6 +8,7 @@ namespace Gruppeoppgave1.Models
     public class Bestilling
     {
         public int Id { get; set; }
+        public string Referanse { get; set; }
         [Required]
         [RegularExpression("^[A-ZÖ][a-zö]*[-][A-ZÖ][a-zö]*$")]
         public string Ferjestrekning { get; set; }
