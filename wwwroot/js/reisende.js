@@ -42,7 +42,7 @@ const setReisende = () => {
 const formaterTable = () => {
     const el = $("#reisende")
     let string = `<button onclick='setKontaktPerson( this, "Kontaktperson 18+")' class='btn btn-outline-secondary'>Kontaktperson 18+</button>`;
-    for (let i = 1; i < Number(bestilling.reisende.voksne); i++) {
+    for (let i = 0; i < Number(bestilling.reisende.voksne) - 1; i++) {
         string += `<button onclick='setVoksen(${i}, this, "Reisende 18+ ${i+1}")' class='btn btn-outline-secondary'>Reisende 18+ ${i+1}</button>`
     }
     for (let i = 0; i < Number(bestilling.reisende.barn); i++) {
