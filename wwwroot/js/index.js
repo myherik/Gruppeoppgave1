@@ -5,9 +5,20 @@ let bHjemreise = false;
 let bRegnummer = false;
 let bLugar = false;
 let bestilling = {}
+let reiser = {}
 
 $(()=>{
   $("#voksen").val(1).change()
+  
+  $.get("api/reise", data => {
+    let options = ""
+    for (let reise of data) {
+      reiser[reise.strekning] = reise;
+      options += `<option value="${reise.strekning}">${reise.strekning}</option>`
+    }
+    $("#ferjestrekning").append(options)
+    //reiser = data;
+  })
 })
 
 const setPris = () => {
@@ -166,7 +177,21 @@ const validerStrekning = (item) => {
     bFerjestrekning = true;
     sjekkVidere();
     const flags = $("#flags");
-    let string;
+    reise = reiser[item.value];
+    let string = `<img class='boat' src='${reise.bildeLink}' alt='Danmark flagg'><p style='max-width: 50%'>` +
+        `<p style='max-width: 50%'>${reise.info}</p>`
+    flags.html(string)
+    if (!reise.maLugar) {
+      setIngenLugar();
+    } else {
+      $("#lugarCheck").prop('checked', true);
+      $("#lugarCheck").attr('disabled', true);
+      $("#lugar").attr('disabled', false)
+    }
+    
+    
+    
+    /*
     switch (item.value){
         case "Larvik-Hirtshals":
           setIngenLugar();
@@ -205,6 +230,7 @@ const validerStrekning = (item) => {
           
           
     }
+     */
   }
   else {
     item.classList.remove("is-valid");

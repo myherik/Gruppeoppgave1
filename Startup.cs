@@ -18,6 +18,7 @@ namespace Gruppeoppgave1
             services.AddControllers();
             services.AddDbContext<MyDBContext>(options => options.UseSqlite("Data source=Bestilling.db"));
             services.AddScoped<IBestillingRepo, BestillingRepo>();
+            services.AddScoped<IReiseRepo, ReiseRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +38,8 @@ namespace Gruppeoppgave1
             {
                 endpoints.MapControllers();
             });
+            
+            DbSeed.SeedDb(app);
         }
     }
 }
