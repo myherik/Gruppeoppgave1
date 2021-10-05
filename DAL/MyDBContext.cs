@@ -12,6 +12,7 @@ namespace Gruppeoppgave1.DAL
         }
         public DbSet<Barn> Barn { get; set; }
         public DbSet<Voksen> Voksne { get; set; }
+        public DbSet<KontaktPerson> Type { get; set; }
         public DbSet<Bestilling> Bestillinger { get; set; }
         public DbSet<Reise> Reiser { get; set; }
 

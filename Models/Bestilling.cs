@@ -22,7 +22,8 @@ namespace Gruppeoppgave1.Models
         public int AntallLugarer { get; set; }
         [RegularExpression("^[A-Z]{2}\\s[1-9]{1}[0-9]{4}$")]
         public string Registreringsnummer { get; set; }
-        [Required]
+        [Required] 
+        public virtual KontaktPerson KontaktPerson { get; set; }
         public virtual List<Voksen> Voksne { get; set; }
         public virtual List<Barn> Barn { get; set; }
         
