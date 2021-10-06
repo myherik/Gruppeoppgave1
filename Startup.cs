@@ -15,7 +15,10 @@ namespace Gruppeoppgave1
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
             services.AddDbContext<MyDBContext>(options => options.UseSqlite("Data source=Bestilling.db"));
             services.AddScoped<IBestillingRepo, BestillingRepo>();
             services.AddScoped<IReiseRepo, ReiseRepo>();
