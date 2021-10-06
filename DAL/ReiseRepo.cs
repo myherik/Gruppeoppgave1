@@ -27,5 +27,10 @@ namespace Gruppeoppgave1.DAL
 
             return await _db.Reiser.ToListAsync();
         }
+
+        public async Task<List<Lugar>> HentLugerByReise(int reiseId)
+        {
+            return await _db.Lugarer.Where(l => l.Reise.Id == reiseId).ToListAsync();
+        }
     }
 }

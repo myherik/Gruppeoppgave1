@@ -9,5 +9,7 @@ namespace Gruppeoppgave1.DAL
         Task<bool> AddOne(Reise reise);
 
         Task<List<Reise>> GetAll();
+
+        Task<List<Lugar>> HentLugerByReise(int reiseId);
     }
 }

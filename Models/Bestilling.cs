@@ -18,10 +18,10 @@ namespace Gruppeoppgave1.Models
         [RegularExpression("^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$")]
         public string HjemreiseDato { get; set; }
         public int Pris { get; set; }
-        public string LugarType { get; set; }
-        public int AntallLugarer { get; set; }
         [RegularExpression("^[A-Z]{2}\\s[1-9]{1}[0-9]{4}$")]
         public string Registreringsnummer { get; set; }
+        public int AntallLugarer { get; set; }
+        public virtual Lugar LugarType { get; set; }
         [Required] 
         public virtual KontaktPerson KontaktPerson { get; set; }
         public virtual List<Voksen> Voksne { get; set; }

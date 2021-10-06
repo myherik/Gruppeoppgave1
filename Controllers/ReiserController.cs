@@ -33,6 +33,12 @@ namespace Gruppeoppgave1.Controllers
 
             return BadRequest("No reise created");
         }
+
+        [HttpGet("lugar/{reiseId}")]
+        public async Task<ActionResult> HentLugerByReise(int reiseId)
+        {
+            return Ok(await _repo.HentLugerByReise(reiseId));
+        }
         
     }
 }

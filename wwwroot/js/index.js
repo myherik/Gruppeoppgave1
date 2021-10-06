@@ -6,6 +6,7 @@ let bRegnummer = false;
 let bLugar = false;
 let bestilling = {}
 let reiser = {}
+let lugarer = {}
 
 $(()=>{
   $("#voksen").val(1).change()
@@ -24,47 +25,61 @@ $(()=>{
 const setPris = () => {
   let pris = 0;
   const rute = $("#ferjestrekning").val()
-  switch (rute){
-    case "Larvik-Hirtshals":
-      pris += 300
-      break;
-    case "Kristiansand-Hirtshals":
-      pris += 350
-      break;
-    case "Oslo-Kiel":
-      pris += 700
-      break;
-    case "Sandefjord-Strömstad":
-      pris += 100
+  if (reiser[rute] != null) {
+    pris += reiser[rute].prisPerGjest
+    /*
+    switch (rute){
+      case "Larvik-Hirtshals":
+        pris += 300
+        break;
+      case "Kristiansand-Hirtshals":
+        pris += 350
+        break;
+      case "Oslo-Kiel":
+        pris += 700
+        break;
+      case "Sandefjord-Strömstad":
+        pris += 100
+    }
+     */
+    
+    const lugar = $("#lugar").val()
+    let antall_barn = Number($("#barn").val());
+    let antall_voksen = Number($("#voksen").val());
+    let antall_lugarer = $("#lugarCheck").is(":checked") && lugarer[lugar] != null ?
+        Math.ceil((antall_voksen + antall_barn)/lugarer[lugar].antall):
+        null
+
+    pris *= antall_voksen + (0.5*antall_barn);
+
+    pris += antall_lugarer != null ? Number(antall_lugarer*(lugarer[lugar].pris)) : 0
+
+    /*
+    switch (lugar){
+      case "3":
+        pris +=antall_lugarer*520;
+        break;
+      case "4":
+        pris += antall_lugarer*1550;
+        break;
+      case "5":
+        pris += antall_lugarer*3200;
+        break;
+    }
+     */
+
+    pris += $("#regCheck").is(":checked") ? reiser[rute].prisBil : 0
+
+    pris *= $("#skalHjem").is(":checked") ? 2 : 1
+    
+    bestilling.pris = pris;
+    bestilling.antallLugarer = antall_lugarer;
   }
   
-  let antall_barn = Number($("#barn").val());
-  let antall_voksen = Number($("#voksen").val());
-  let antall_lugarer = Math.ceil((antall_voksen + antall_barn)/4)
-  
-  pris *= antall_voksen + (0.5*antall_barn);
-  
-  const lugar = $("#lugar").val()
-  switch (lugar){
-    case "3":
-      pris +=antall_lugarer*520;
-      break;
-    case "4":
-      pris += antall_lugarer*1550;
-      break;
-    case "5":
-      pris += antall_lugarer*3200;
-      break;
-  }
-  
-  pris += $("#regCheck").is(":checked") ? 700 : 0
-  
-  pris *= $("#skalHjem").is(":checked") ? 2 : 1
 
   $("#setPris").text(pris)
       
-  bestilling.pris = pris;
-  bestilling.antallLugarer = antall_lugarer;
+  
 }
 
 const sjekkVidere = () => {
@@ -171,13 +186,28 @@ const videre = () => {
 }
 
 const validerStrekning = (item) => {
-  if (item.value === "Larvik-Hirtshals" || item.value === "Kristiansand-Hirtshals" || item.value === "Sandefjord-Strömstad" || item.value === "Oslo-Kiel"){
+  if (reiser[item.value] != null){
     item.classList.remove("is-invalid");
     item.classList.add("is-valid");
+    
+    
+    
     bFerjestrekning = true;
     sjekkVidere();
     const flags = $("#flags");
     reise = reiser[item.value];
+
+    let url = "api/reise/lugar/" + reise.id;
+    $.get(url, data => {
+      let out = "<option disabled selected>Velg lugar</option>"
+      for (let lugar of data) {
+        lugarer[lugar.type] = lugar;
+        out += `<option value='${lugar.type}'>${lugar.type}</option>`
+      }
+      
+      $("#lugar").html(out)
+    })
+    
     let string = `<img class='boat' src='${reise.bildeLink}' alt='Danmark flagg'><p style='max-width: 50%'>` +
         `<p style='max-width: 50%'>${reise.info}</p>`
     flags.html(string)
@@ -188,9 +218,6 @@ const validerStrekning = (item) => {
       $("#lugarCheck").attr('disabled', true);
       $("#lugar").attr('disabled', false)
     }
-    
-    
-    
     /*
     switch (item.value){
         case "Larvik-Hirtshals":
@@ -251,7 +278,7 @@ const setIngenLugar = () => {
 }
 
 const validerLugar = (item) => {
-  if (item.value === "3" || item.value === "4" || item.value === "5"){
+  if (lugarer[item.value] != null){
     item.classList.remove("is-invalid");
     item.classList.add("is-valid");
     bLugar = true;
