@@ -172,7 +172,7 @@ const videre = () => {
     UtreiseDato: $("#velgUtreise").val(),
     HjemreiseDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
     Registreringsnummer: $("#regCheck").is(":checked") ? $("#regNummer").val(): null,
-    LugarType: $("#lugar").val(),
+    LugarType: lugarer[$("#lugar").val()],
     Pris: bestilling.pris,
     AntallLugarer: bestilling.antallLugarer,
     reisende: {
