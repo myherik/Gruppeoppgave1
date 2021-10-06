@@ -39,6 +39,18 @@ namespace Gruppeoppgave1.Controllers
         {
             return Ok(await _repo.HentLugerByReise(reiseId));
         }
+
+        [HttpGet("postnummer/{postnummer}")]
+        public async Task<ActionResult> HentPostByPostnummer(string postnummer)
+        {
+            var poststed = await _repo.HentPoststedByPostnummer(postnummer);
+            if (poststed != null)
+            {
+                return Ok(poststed);
+            }
+
+            return BadRequest();
+        }
         
     }
 }

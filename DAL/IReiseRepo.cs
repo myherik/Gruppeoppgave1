@@ -11,5 +11,7 @@ namespace Gruppeoppgave1.DAL
         Task<List<Reise>> GetAll();
 
         Task<List<Lugar>> HentLugerByReise(int reiseId);
+
+        Task<Post> HentPoststedByPostnummer(string postnummer);
     }
 }

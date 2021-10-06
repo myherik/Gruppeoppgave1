@@ -32,5 +32,10 @@ namespace Gruppeoppgave1.DAL
         {
             return await _db.Lugarer.Where(l => l.Reise.Id == reiseId).ToListAsync();
         }
+
+        public async Task<Post> HentPoststedByPostnummer(string postnummer)
+        {
+            return await _db.PostSteder.FirstOrDefaultAsync(p => p.PostNummer == postnummer);
+        }
     }
 }
