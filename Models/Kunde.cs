@@ -28,6 +28,8 @@ namespace Gruppeoppgave1.Models
     public class KontaktPerson: Kunde{
         [Required]
         public string Adresse { get; set; }
+        [Required] 
+        public virtual Post Post { get; set; }
         [Required]
         public string telefon { get; set; }
         [Required]
