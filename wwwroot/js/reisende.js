@@ -18,6 +18,10 @@ const setReisende = () => {
         etternavn: "",
         Foedselsdato: "",
         adresse: "",
+        post:{
+            postNummer: "",
+            postSted: ""
+        },
         telefon: "",
         epost: ""
     }
@@ -71,31 +75,31 @@ const setKontaktPerson = (item, typePerson) => {
     const adresse = $("#adresse");
     adresse.val(kontaktperson.adresse)
     if (adresse.val() === "" ){
-        adresse.classList.remove("is-valid");  
+        adresse[0].classList.remove("is-valid");  
     }
 
     const postnummer = $("#postnummer");
-    postnummer.val(kontaktperson.postnummer)
+    postnummer.val(kontaktperson.post.postNummer)
     if (postnummer.val() === "" ){
-        postnummer.classList.remove("is-valid");
+        postnummer[0].classList.remove("is-valid");
     }
 
     const poststed = $("#poststed");
-    poststed.val(kontaktperson.poststed)
+    poststed.val(kontaktperson.post.postSted)
     if (poststed.val() === "" ){
-        poststed.classList.remove("is-valid");
+        poststed[0].classList.remove("is-valid");
     }
 
     const telefon = $("#telefon");
     telefon.val(kontaktperson.telefon)
     if (telefon.val() === "" ){
-        telefon.classList.remove("is-valid");
+        telefon[0].classList.remove("is-valid");
     }
 
     const epost = $("#epost");
     epost.val(kontaktperson.epost)
     if (epost.val() === "" ){
-        epost.classList.remove("is-valid");
+        epost[0].classList.remove("is-valid");
     }
     
 
@@ -336,25 +340,18 @@ const validerPostnummer = (item) => {
     const regPostnummer = new RegExp(`^[0-9]{4}$`)
 
     if (regPostnummer.test(postnummer)){
+        
+        $.get(`api/reise/postnummer/${postnummer}`, data => {
+            if (data != null){
+                kontaktperson.post = data;
+                const poststed = $("#poststed");
+                poststed.val(data.postSted);
+                poststed[0].classList.remove("is-invalid");
+                poststed[0].classList.add("is-valid");
+            }
+        })
         item.classList.remove("is-invalid");
         item.classList.add("is-valid");
-        kontaktperson.postnummer = postnummer;
-    }
-    else {
-        item.classList.remove("is-valid");
-        item.classList.add("is-invalid");
-    }
-    sjekk(true);
-}
-
-const validerPoststed = (item) => {
-    const poststed = item.value;
-    const regPoststed = new RegExp(`^[0-9]{4}$`) /* DENNE ER IKKE RIKTIG */
-    
-    if (regPoststed.test(poststed)){
-        item.classList.remove("is-invalid");
-        item.classList.add("is-valid");
-        kontaktperson.poststed = poststed;
     }
     else {
         item.classList.remove("is-valid");
@@ -365,7 +362,7 @@ const validerPoststed = (item) => {
 
 const validerTelefon = (item) => {
     const telefon = item.value;
-    const regTelefon = new RegExp(); /* IKKE FERDIG */
+    const regTelefon = new RegExp(`^[49][0-9]{7}$`); /* IKKE FERDIG */
     
     if (regTelefon.test(telefon)){
         item.classList.remove("is-invalid");
@@ -396,7 +393,7 @@ const validerEpost = (item) => {
 
 const sjekk = (bool) => {
     if (bool) {
-        if ($(`.is-valid`).length === 6){
+        if ($(`.is-valid`).length === 8){
             $("#lagre").attr("disabled", false);
         }
     } else {
