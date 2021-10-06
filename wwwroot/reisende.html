@@ -93,7 +93,13 @@
         
         <tr hidden class="kontakt">
             <td><label for="adresse">Adresse</label></td>
-            <td><input class="form-control" type="text" id="adresse"></td>
+            <td>
+                <div class="input-group">
+                    <input class="form-control" type="text" id="adresse">
+                    <input class="form-control" type="text" id="postnummer" placeholder="postNr." maxlength="4" size="4">
+                    <input class="form-control" type="text" id="poststed" placeholder="poststed">
+                </div>
+            </td>
         </tr>
         
         <tr hidden class="kontakt">

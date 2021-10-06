@@ -1,0 +1,5 @@
+2021-10-06T14:01:55.7533256+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2021-10-06T14:01:55.7597309+02:00  [INF] Now listening on: "http://[::]:5000" (d826f4b8)
+2021-10-06T14:01:55.7600975+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-10-06T14:01:55.7601547+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-10-06T14:01:55.7601846+02:00  [INF] Content root path: "C:\Users\Bruker\RiderProjects\Gruppeoppgave1" (b5d60022)

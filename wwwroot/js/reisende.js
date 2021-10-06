@@ -61,12 +61,43 @@ const setKontaktPerson = (item, typePerson) => {
     }
     const etternavn = $("#etternavn")
     etternavn.val(kontaktperson.etternavn)
-    if(etternavn.val () === "") {
+    if(etternavn.val() === "") {
         etternavn[0].classList.remove("is-valid")
     }
     const dato = $("#dato")
     dato[0].classList.remove("is-valid")
     dato.val('dd.mm.åååå')
+    
+    const adresse = $("#adresse");
+    adresse.val(kontaktperson.adresse)
+    if (adresse.val() === "" ){
+        adresse.classList.remove("is-valid");  
+    }
+
+    const postnummer = $("#postnummer");
+    postnummer.val(kontaktperson.postnummer)
+    if (postnummer.val() === "" ){
+        postnummer.classList.remove("is-valid");
+    }
+
+    const poststed = $("#poststed");
+    poststed.val(kontaktperson.poststed)
+    if (poststed.val() === "" ){
+        poststed.classList.remove("is-valid");
+    }
+
+    const telefon = $("#telefon");
+    telefon.val(kontaktperson.telefon)
+    if (telefon.val() === "" ){
+        telefon.classList.remove("is-valid");
+    }
+
+    const epost = $("#epost");
+    epost.val(kontaktperson.epost)
+    if (epost.val() === "" ){
+        epost.classList.remove("is-valid");
+    }
+    
 
     const lagre = $("#lagre");
 
@@ -75,12 +106,24 @@ const setKontaktPerson = (item, typePerson) => {
     $("#personer").attr('hidden', true)
     $("#input-felter").attr('hidden', false)
     $(".kontakt").attr('hidden', false)
+    
     fornavn.unbind()
     fornavn.keyup(() => validerFornavn(0, fornavn[0], "voksen", true))
     etternavn.unbind()
     etternavn.keyup(() => validerEtternavn(0, etternavn[0], "voksen", true))
     dato.unbind()
     dato.change(() => validerBursdag(0, dato[0], "voksen", true))
+    adresse.unbind()
+    adresse.keyup(() => validerAdresse(adresse[0]))
+    postnummer.unbind()
+    postnummer.keyup(() => validerPostnummer(postnummer[0]))
+    poststed.unbind()
+    poststed.keyup(() => validerPoststed(poststed[0]))
+    telefon.unbind()
+    telefon.keyup(() => validerTelefon(telefon[0]))
+    epost.unbind()
+    epost.keyup(() => validerEpost(epost[0]))
+    
 
     lagre.unbind()
     lagre.click(() => {
@@ -272,6 +315,84 @@ const validerBursdag = (index, item, type, bool) => {
         }
     }
 }
+
+const validerAdresse = (item) => {
+    const adresse = item.value;
+    const regAdresse = new RegExp(`^([A-ZÆØÅ]{1}[a-zæøå]{0,}\\s{0,1}){1,}\\s[0-9]{1,4}[A-ZÆØÅ]{0,1}$`);
+    
+    if (regAdresse.test(adresse)){
+        item.classList.remove("is-invalid");
+        item.classList.add("is-valid");
+        kontaktperson.postnummer = postnummer;
+    } else {
+        item.classList.remove("is-valid");
+        item.classList.add("is-invalid");
+    }
+    sjekk(true);
+}
+
+const validerPostnummer = (item) => {
+    const postnummer = item.value;
+    const regPostnummer = new RegExp(`^[0-9]{4}$`)
+
+    if (regPostnummer.test(postnummer)){
+        item.classList.remove("is-invalid");
+        item.classList.add("is-valid");
+        kontaktperson.postnummer = postnummer;
+    }
+    else {
+        item.classList.remove("is-valid");
+        item.classList.add("is-invalid");
+    }
+    sjekk(true);
+}
+
+const validerPoststed = (item) => {
+    const poststed = item.value;
+    const regPoststed = new RegExp(`^[0-9]{4}$`) /* DENNE ER IKKE RIKTIG */
+    
+    if (regPoststed.test(poststed)){
+        item.classList.remove("is-invalid");
+        item.classList.add("is-valid");
+        kontaktperson.poststed = poststed;
+    }
+    else {
+        item.classList.remove("is-valid");
+        item.classList.add("is-invalid");
+    }
+    sjekk(true);
+}
+
+const validerTelefon = (item) => {
+    const telefon = item.value;
+    const regTelefon = new RegExp(); /* IKKE FERDIG */
+    
+    if (regTelefon.test(telefon)){
+        item.classList.remove("is-invalid");
+        item.classList.add("is-valid");
+        kontaktperson.telefon = telefon;
+    } else {
+        item.classList.remove("is-valid");
+        item.classList.add("is-invalid");
+    }
+    sjekk(true);
+}
+
+const validerEpost = (item) => {
+    const epost = item.value;
+    const regEpost = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+    
+    if (regEpost.test(epost)){
+        item.classList.remove("is-invalid");
+        item.classList.add("is-valid");
+        kontaktperson.epost = epost;
+    } else {
+        item.classList.remove("is-valid");
+        item.classList.add("is-invalid");
+    }
+    sjekk(true);
+}
+
 
 const sjekk = (bool) => {
     if (bool) {
