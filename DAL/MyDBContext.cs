@@ -16,6 +16,7 @@ namespace Gruppeoppgave1.DAL
         public DbSet<Bestilling> Bestillinger { get; set; }
         public DbSet<Reise> Reiser { get; set; }
         public DbSet<Lugar> Lugarer { get; set; }
+        public DbSet<Post> PostSteder { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
