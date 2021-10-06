@@ -121,15 +121,22 @@ namespace Gruppeoppgave1.DAL
                 
                 db.Lugarer.AddRange(lugar1, lugar2, lugar3, lugar4, lugar5, lugar6);
 
-                string[] linesPost = System.IO.File.ReadAllLines("DAL/hobbyhuset.sql");
-                //Console.WriteLine(linesPost[0].Split("'")[1] + " " + linesPost[0].Split("'")[3]);
+                string[] linesPost = System.IO.File.ReadAllLines("DAL/post.sql");
                 foreach (var s in linesPost)
                 {
-                    db.PostSteder.Add(new Post
+                    try
                     {
-                        PostNummer = s.Split("'")[1],
-                        PostSted = s.Split("'")[3]
-                    });
+                        db.PostSteder.Add(new Post
+                        {
+                            PostNummer = s.Split("'")[1],
+                            PostSted = s.Split("'")[3]
+                        });
+                    }
+                    catch
+                    {
+                        Console.WriteLine(s);
+                    }
+                    
                 }
                 
                 db.SaveChanges();
