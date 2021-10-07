@@ -35,12 +35,14 @@ namespace Gruppeoppgave1.DAL
             return bestilling;
 
         }
-
+        
         public async Task<Bestilling> LeggTil(Bestilling bestilling)
         {
             // teste for unik Refereanse
             bool uniq = false;
             int teller = 0;
+            // uses 8 first chars in new GUID to generate ref
+            // uses do while to ensure unique ref 
             do
             {
                 uniq = _db.Bestillinger
@@ -51,8 +53,8 @@ namespace Gruppeoppgave1.DAL
                     teller++;
                 }
             } while (!uniq);
-            Console.WriteLine($"--> Vi må loope {teller} ganger");
 
+            // gets lugar and post from db to have right foreign key
             bestilling.LugarType = await _db.Lugarer.FirstOrDefaultAsync(l => l.Id == bestilling.LugarType.Id);
             bestilling.KontaktPerson.Post = await _db.PostSteder.FindAsync(bestilling.KontaktPerson.Post.PostNummer);
             

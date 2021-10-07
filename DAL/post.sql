@@ -2647,7 +2647,6 @@
 ('4902', 'TVEDESTRAND'),
 ('4909', 'SONGE'),
 ('4910', 'LYNGØR');
-INSERT INTO Poststed (PostNr, Poststed) VALUES
 ('4912', 'GJEVING'),
 ('4915', 'VESTRE SANDØYA'),
 ('4916', 'BORØY'),
