@@ -91,8 +91,30 @@ single page application)
 
 ## Skjermbilder
 
+Alle skjermbilder er vist ferdig utfylt.
+
+### Forside
+![Forside](./Media/Forside.JPG)
+
+### Reisende
+![Reisende-meny](./Media/Reisende-meny.JPG)
+![Reisende-kontaktperson](./Media/Reisende-kontaktperson.JPG)
+![Reisende-voksen](./Media/Reisende-voksen.JPG)
+![Reisende-utfylt](./Media/Reisende-utfylt.JPG)
+
+### Betal
+![Betal](./Media/Betal.JPG)
+
+### Bekreftelse
+![Utskrift](./Media/Bekreftelse-utskrift.JPG)
+
+Denne er for om du ikke har gått igjennom en bestilling før du går til bekreftelse.html
+![Utskrift](./Media/Bekreftelse.JPG)
+
 
 ## Kommentarer om valg vi har tatt
+
+
 
 
 ## Kilder
