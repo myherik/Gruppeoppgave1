@@ -1,5 +1,5 @@
 ﻿# Gruppeoppgave 1 - Bestille båttur
-#### s341833, s341867 og s331394
+
 
 ## Introduksjon
 
