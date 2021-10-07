@@ -18,6 +18,9 @@ namespace Gruppeoppgave1.DAL
 
         private static void SeedData(MyDBContext db)
         {
+            /***
+             * Seeding 4 routes and lugar to all routes
+             */
             if (!db.Reiser.Any())
             {
                 var reise1 = new Reise
@@ -26,10 +29,9 @@ namespace Gruppeoppgave1.DAL
                     PrisPerGjest = 700,
                     PrisBil = 700,
                     BildeLink = "./res/Color_Magic.jpeg",
-                    Info = "Det " +
-                           "lønner seg å bestille tidlig, da sikrer du deg en god pris og plass på ønsket avgang. Overfarten med " +
-                           "SuperSpeed fra Kristiansand tar kun 3 timer og 15 minutter. Medlemmer av Color Club får de beste prisene " +
-                           "på bilpakke til Danmark.",
+                    Info = "Opplev herlige måltider i restaurantene, spektakulære show, spa og trening, " +
+                           "taxfree-shopping, soldekk og mye mer. Forhåndbestill mat for å unngå fullbooket " +
+                           "restaurant og få inntil 25% rabatt.",
                     MaLugar = true
                 };
                 var reise2 = new Reise
@@ -121,6 +123,9 @@ namespace Gruppeoppgave1.DAL
                 
                 db.Lugarer.AddRange(lugar1, lugar2, lugar3, lugar4, lugar5, lugar6);
 
+                /***
+                 * seeding all postnummer and poststed from file DAT/post.sql
+                 */
                 string[] linesPost = System.IO.File.ReadAllLines("DAL/post.sql");
                 foreach (var s in linesPost)
                 {

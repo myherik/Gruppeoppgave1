@@ -33,7 +33,7 @@ namespace Gruppeoppgave1.Controllers
         [HttpGet("{id}", Name ="HentBestilling")]
         public async Task<ActionResult> HentBestilling(int id)
         {
-            _log.LogInformation($"HentAlle({id})");
+            _log.LogInformation($"HentEn({id})");
             var bestilling = await _db.HentEn(id);
             if (bestilling != null)
             {
@@ -49,6 +49,7 @@ namespace Gruppeoppgave1.Controllers
             var bestilling = await _db.HentEnByRef(referanse);
             if (bestilling != null)
             {
+                _log.LogInformation($"HentBestillingByRef({referanse})");
                 return Ok(bestilling);
             }
 

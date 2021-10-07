@@ -58,6 +58,10 @@ const setPris = () => {
   $("#setPris").text(pris)
 }
 
+/***
+ * this methode is used to check that all fields are good,
+ * then the button to go next page gets available
+ */
 const sjekkVidere = () => {
   setPris()
   if ($("#skalHjem").is(":checked")){
@@ -89,6 +93,12 @@ const sjekkVidere = () => {
   }
 }
 
+/***
+ * when checkbox for hjemreise is click 
+ * the input-field gets changed according to 
+ * if it is checked or not
+ * the style for date field is removed on not-checked
+ */
 const skalHjem = () => {
   const check = $("#skalHjem").is(":checked");
   $("#hjemDato").attr("disabled", !check);
@@ -104,12 +114,18 @@ const skalHjem = () => {
   }
 }
 
+
 const setReise = (reise) => {
-  //console.log(reise)
   $('#ferjestrekning option').removeAttr('selected')
   $(`#ferjestrekning option[value=${reise}]`).attr('selected','selected').change();
 }
 
+/***
+ * when checkbox for bil is click
+ * the input-field gets changed according to
+ * if it is checked or not
+ * the style for date field is removed on not-checked
+ */
 const skalBil = () => {
   const check = $("#regCheck").is(":checked");
   $("#regNummer").attr("disabled", !check);
@@ -125,6 +141,13 @@ const skalBil = () => {
   }
 }
 
+
+/***
+ * when checkbox for lugar is click
+ * the input-field gets changed according to
+ * if it is checked or not
+ * the style for date field is removed on not-checked
+ */
 const skalLugar = () => {
   const check = $("#lugarCheck").is(":checked");
   $("#lugar").attr("disabled", !check);
@@ -141,26 +164,14 @@ const skalLugar = () => {
   }
 }
 
-const videre = () => {
-  const inputs = {
-    Id: 0,
-    Ferjestrekning: $("#ferjestrekning").val(),
-    UtreiseDato: $("#velgUtreise").val(),
-    HjemreiseDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
-    Registreringsnummer: $("#regCheck").is(":checked") ? $("#regNummer").val(): null,
-    LugarType: lugarer[$("#lugar").val()] != null ? {id: lugarer[$("#lugar").val()].id} : null,
-    Pris: bestilling.pris,
-    AntallLugarer: bestilling.antallLugarer,
-    reisende: {
-      voksne: $("#voksen").val(),
-      barn: $("#barn").val()
-    }
-  }
-  localStorage.setItem("formData", JSON.stringify(inputs))
-  console.log(JSON.parse(localStorage.getItem("formData")));
-  window.location.href = "/reisende.html";
-}
-
+/***
+ * method to validate strekning
+ * check if route is stored in hashmap
+ * information about rout is set in table
+ * all lugar from rout is loaded and added to select
+ * 
+ * @param item - value of the option
+ */
 const validerStrekning = (item) => {
   if (reiser[item.value] != null){
     item.classList.remove("is-invalid");
@@ -204,6 +215,11 @@ const validerStrekning = (item) => {
   }
 }
 
+
+/***
+ * removes checked from checkbox for lugar
+ * removes valid style form select
+ */
 const setIngenLugar = () => {
   bLugar = true;
   $("#lugarCheck").attr('disabled', false);
@@ -214,6 +230,12 @@ const setIngenLugar = () => {
   $("#lugar").removeClass("is-invalid");
 }
 
+/***
+ * checks if lugar is stored in hashmap created in validateStreking
+ * onchange method for select lugar
+ * 
+ * @param item - selected option
+ */
 const validerLugar = (item) => {
   if (lugarer[item.value] != null){
     item.classList.remove("is-invalid");
@@ -229,6 +251,12 @@ const validerLugar = (item) => {
   }
 }
 
+/***
+ * on change for utreise field
+ * checking if the date is in the future
+ * 
+ * @param item - date from input
+ */
 const validerUtreise = (item) => {
   const date = item.value;
   const hjemreise = $("#hjemDato").val();
@@ -257,6 +285,12 @@ const validerUtreise = (item) => {
   }
 }
 
+/***
+ * on change for hjemreise field
+ * checking that the date is after utreisedato
+ * 
+ * @param item - date from input
+ */
 const validerHjemreise = (item) => {
   const date = item.value;
   const utreiseDate = $("#velgUtreise").val();
@@ -283,6 +317,9 @@ const validerHjemreise = (item) => {
   }
 }
 
+/***
+ * validates that the regnummer is legal in norway with regex
+ */
 const validerRegnummer = () => {
   const regnummer = $("#regNummer").val()
   const regexRegnummer = new RegExp(`^[A-Z]{2}\\s[1-9]{1}[0-9]{4}$`)
@@ -301,6 +338,12 @@ const validerRegnummer = () => {
   }
 }
 
+/***
+ * on key up for antall voksne
+ * has to be 1 or more
+ * 
+ * @param item - field 
+ */
 const validerVoksne = (item) => {
   const antall = item.value;
   if (antall > 0 && (antall % 1 === 0)){
@@ -317,6 +360,12 @@ const validerVoksne = (item) => {
   }
 }
 
+/***
+ * on key up for antall barn
+ * has to be a number, or "", 0 and more is allowed
+ * 
+ * @param item -  field
+ */
 const validerBarn = (item) => {
   const antall = item.value;
   if (antall >= 0 && (antall % 1 === 0)){
@@ -352,4 +401,28 @@ const mini = (land) => {
       swe.collapse("hide");
       break;
   }
+}
+
+/***
+ * button click for going to the next page with bestilling
+ * all args are received from fields and stored in locastorage for next page to get
+ */
+const videre = () => {
+  const inputs = {
+    Id: 0,
+    Ferjestrekning: $("#ferjestrekning").val(),
+    UtreiseDato: $("#velgUtreise").val(),
+    HjemreiseDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
+    Registreringsnummer: $("#regCheck").is(":checked") ? $("#regNummer").val(): null,
+    LugarType: lugarer[$("#lugar").val()] != null ? {id: lugarer[$("#lugar").val()].id} : null,
+    Pris: bestilling.pris,
+    AntallLugarer: bestilling.antallLugarer,
+    reisende: {
+      voksne: $("#voksen").val(),
+      barn: $("#barn").val()
+    }
+  }
+  localStorage.setItem("formData", JSON.stringify(inputs))
+  console.log(JSON.parse(localStorage.getItem("formData")));
+  window.location.href = "/reisende.html";
 }

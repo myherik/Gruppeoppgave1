@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Gruppeoppgave1.Models
 {
@@ -21,6 +22,7 @@ namespace Gruppeoppgave1.Models
         [RegularExpression("^[A-Z]{2}\\s[1-9]{1}[0-9]{4}$")]
         public string Registreringsnummer { get; set; }
         public int AntallLugarer { get; set; }
+        [ValidateNever]
         public virtual Lugar LugarType { get; set; }
         [Required] 
         public virtual KontaktPerson KontaktPerson { get; set; }

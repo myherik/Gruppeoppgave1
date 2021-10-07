@@ -1,3 +1,9 @@
+/***
+ * readyfunction
+ * gets bestilling from localstorage
+ * if no bestilling is stored user is returend to index.html
+ * else user is ready for presenting info about passengers
+ */
 $(()=>{
     bestilling = JSON.parse(localStorage.getItem("formData"))
     if (bestilling == null){
@@ -12,6 +18,10 @@ let reisendeVoksen = [];
 let reisendeBarn = [];
 let kontaktperson;
 
+/***
+ * arrays for all voksne and barn given by bestilling is set with fields
+ * kontaktperson is set with more fields 
+ */
 const setReisende = () => {
     kontaktperson = {
         fornavn: "",
@@ -43,6 +53,10 @@ const setReisende = () => {
     }
 }
 
+/***
+ * presents a button for every passenger in bestilling
+ * text is set in button according to type of passenger
+ */
 const formaterTable = () => {
     const el = $("#reisende")
     let string = `<button onclick='setKontaktPerson( this, "Kontaktperson 18+")' class='btn btn-outline-secondary'>Kontaktperson 18+</button>`;
@@ -55,6 +69,14 @@ const formaterTable = () => {
     el.html(string)
 }
 
+/***
+ * onclick for first buton for kontaktperson
+ * more fields are shown as more info is necessary
+ * correct validations is set on all fields and button
+ * 
+ * @param item - the button, for changing color when done
+ * @param typePerson - for text in form
+ */
 const setKontaktPerson = (item, typePerson) => {
     $("#typePerson").text(typePerson.toLowerCase())
     //console.log(index)
@@ -145,6 +167,15 @@ const setKontaktPerson = (item, typePerson) => {
     })
 }
 
+/***
+ * onclick for button for adult travelers
+ * sets field for type of traveler
+ * sets correct validation
+ * 
+ * @param index - index of array to store information
+ * @param item - button, for changing color when done
+ * @param typePerson - for text in form
+ */
 const setVoksen = (index, item, typePerson) => {
     $(".kontakt").attr('hidden', true)
     $("#typePerson").text(typePerson.toLowerCase())
@@ -186,6 +217,15 @@ const setVoksen = (index, item, typePerson) => {
     })
 }
 
+/***
+ * onclick for button for child travelers
+ * sets field for type of traveler
+ * sets correct validation
+ *
+ * @param index - index of array to store information
+ * @param item - button, for changing color when done
+ * @param typePerson - for text in form
+ */
 const setBarn = (index, item, typePerson) => {
     $(".kontakt").attr('hidden', true)
     $("#typePerson").text(typePerson.toLowerCase())
@@ -227,6 +267,14 @@ const setBarn = (index, item, typePerson) => {
     })
 }
 
+/***
+ * uses regex to check for capital first letter in all words
+ * 
+ * @param index - index of array
+ * @param item - input field
+ * @param type - type of person
+ * @param bool - if kontaktpersn
+ */
 const validerFornavn = (index, item, type, bool) => {
     const navn = item.value;
     const regNavn = new RegExp(`^([A-ZÆØÅ]{1}[a-zæøå]{0,}\\s{0,1}){1,}$`);
@@ -256,6 +304,14 @@ const validerFornavn = (index, item, type, bool) => {
     }
 }
 
+/***
+ * uses regex to check for capital first letter in one word
+ *
+ * @param index - index of array
+ * @param item - input field
+ * @param type - type of person
+ * @param bool - if kontaktpersn
+ */
 const validerEtternavn = (index, item, type, bool) => {
     const navn = item.value;
     const regNavn = new RegExp(`^[A-ZÆØÅ]{1}[a-zæøå]{0,}$`);
@@ -284,6 +340,15 @@ const validerEtternavn = (index, item, type, bool) => {
     }
 }
 
+/***
+ * uses type to know witch age to check for 18+ or less than 18
+ * checks age at utreise not at order to validate
+ *
+ * @param index - index of array
+ * @param item - input field
+ * @param type - type of person
+ * @param bool - if kontaktpersn
+ */
 const validerBursdag = (index, item, type, bool) => {
     let date = item.value;
     let dateObj = new Date(date)
@@ -327,6 +392,12 @@ const validerBursdag = (index, item, type, bool) => {
     }
 }
 
+/***
+ * only used by kontaktperson
+ * needed at least one word and one number up to 9999
+ * 
+ * @param item - input field
+ */
 const validerAdresse = (item) => {
     const adresse = item.value;
     const regAdresse = new RegExp(`^([A-ZÆØÅ]{1}[a-zæøå]{0,}\\s{0,1}){1,}\\s[0-9]{1,4}[A-ZÆØÅ]{0,1}$`);
@@ -342,6 +413,14 @@ const validerAdresse = (item) => {
     sjekk(true);
 }
 
+/***
+ * backned has list with valid postnummer
+ * get-method to get poststed
+ * if valid poststed put on screen
+ * else error is shown to user
+ * 
+ * @param item - field
+ */
 const validerPostnummer = (item) => {
     const postnummer = item.value;
     const regPostnummer = new RegExp(`^[0-9]{4}$`)
@@ -373,6 +452,11 @@ const validerPostnummer = (item) => {
     sjekk(true);
 }
 
+/***
+ * regex validation for 8 numbers, staring with 4 or 8
+ * 
+ * @param item -  field
+ */
 const validerTelefon = (item) => {
     const telefon = item.value;
     const regTelefon = new RegExp(`^[49][0-9]{7}$`); /* IKKE FERDIG */
@@ -388,6 +472,11 @@ const validerTelefon = (item) => {
     sjekk(true);
 }
 
+/***
+ * regex validation for email found online
+ * 
+ * @param item - field
+ */
 const validerEpost = (item) => {
     const epost = item.value;
     const regEpost = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
@@ -403,7 +492,13 @@ const validerEpost = (item) => {
     sjekk(true);
 }
 
-
+/***
+ * called from all validations
+ * checks if all fields are valid
+ * then make save button available
+ * 
+ * @param bool - if kontaktperson
+ */
 const sjekk = (bool) => {
     if (bool) {
         if ($(`.is-valid`).length === 8){
@@ -417,17 +512,28 @@ const sjekk = (bool) => {
     
 }
 
+/***
+ * checkes that all people are valid the order can be placed
+ */
 const sjekkBestill = () => {
     if ($(".btn-outline-success").length === Number(bestilling.reisende.voksne) + Number(bestilling.reisende.barn)){
         $("#bestill").attr('disabled', false)
     }
 }
 
+/***
+ * closes input for person and person is restored to old state
+ */
 const avbryt = () => {
     $("#input-felter").attr('hidden', true)
     $("#personer").attr('hidden', false)
 }
 
+/***
+ * on click for button made available in sjekkBestill
+ * puts bestilling in localstorage
+ * redirect to betal.html
+ */
 const sendBestilling = () => {
     bestilling.kontaktPerson = kontaktperson;
     bestilling.voksne = reisendeVoksen;
