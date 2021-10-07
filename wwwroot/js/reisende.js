@@ -356,6 +356,12 @@ const validerPostnummer = (item) => {
                 poststed[0].classList.remove("is-invalid");
                 poststed[0].classList.add("is-valid");
             }
+        }).fail(error => {
+            const poststed = $("#poststed");
+            poststed.val("");
+            poststed[0].classList.remove("is-valid");
+            item.classList.remove("is-valid");
+            item.classList.add("is-invalid");
         })
         item.classList.remove("is-invalid");
         item.classList.add("is-valid");
