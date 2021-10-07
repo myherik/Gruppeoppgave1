@@ -1,5 +1,4 @@
 
-
 let bFerjestrekning = false, bUtreise = false, bVoksne = false, bBarn = true;
 let bHjemreise = false;
 let bRegnummer = false;
@@ -8,6 +7,10 @@ let bestilling = {}
 let reiser = {}
 let lugarer = {}
 
+/***
+ * gets all routes from backend and places in select
+ * all routes gets added to hashmap reiser
+ */
 $(()=>{
   $("#voksen").val(1).change()
   
@@ -18,34 +21,24 @@ $(()=>{
       options += `<option value="${reise.strekning}">${reise.strekning}</option>`
     }
     $("#ferjestrekning").append(options)
-    //reiser = data;
   })
 })
 
+/***
+ * on every changes in inputs the price is calculated by the 
+ * numbers served form backend and input given from user
+ * the price then gets displayed to user
+ */
 const setPris = () => {
   let pris = 0;
   const rute = $("#ferjestrekning").val()
   if (reiser[rute] != null) {
     pris += reiser[rute].prisPerGjest
-    /*
-    switch (rute){
-      case "Larvik-Hirtshals":
-        pris += 300
-        break;
-      case "Kristiansand-Hirtshals":
-        pris += 350
-        break;
-      case "Oslo-Kiel":
-        pris += 700
-        break;
-      case "Sandefjord-Strömstad":
-        pris += 100
-    }
-     */
     
     const lugar = $("#lugar").val()
     let antall_barn = Number($("#barn").val());
     let antall_voksen = Number($("#voksen").val());
+    // antall_lugarer depends on if the user has chosen lugar, and that the lugar is valid
     let antall_lugarer = $("#lugarCheck").is(":checked") && lugarer[lugar] != null ?
         Math.ceil((antall_voksen + antall_barn)/lugarer[lugar].antall):
         0
@@ -53,20 +46,6 @@ const setPris = () => {
     pris *= antall_voksen + (0.5*antall_barn);
 
     pris += antall_lugarer !== 0 ? Number(antall_lugarer*(lugarer[lugar].pris)) : 0
-
-    /*
-    switch (lugar){
-      case "3":
-        pris +=antall_lugarer*520;
-        break;
-      case "4":
-        pris += antall_lugarer*1550;
-        break;
-      case "5":
-        pris += antall_lugarer*3200;
-        break;
-    }
-     */
 
     pris += $("#regCheck").is(":checked") ? reiser[rute].prisBil : 0
 
@@ -76,10 +55,7 @@ const setPris = () => {
     bestilling.antallLugarer = antall_lugarer;
   }
   
-
   $("#setPris").text(pris)
-      
-  
 }
 
 const sjekkVidere = () => {
@@ -214,50 +190,11 @@ const validerStrekning = (item) => {
     if (!reise.maLugar) {
       setIngenLugar();
     } else {
+      $("#lugar")[0].classList.remove("is-valid")
       $("#lugarCheck").prop('checked', true);
       $("#lugarCheck").attr('disabled', true);
       $("#lugar").attr('disabled', false)
     }
-    /*
-    switch (item.value){
-        case "Larvik-Hirtshals":
-          setIngenLugar();
-          string = "<img class='boat' src='./res/SuperSpeed_2.jpg' alt='Danmark flagg'><p style='max-width: 50%' '>Overfarten med SuperSpeed" +
-              " fra Larvik tar kun 3 timer og 45 minutter. Det lønner seg å bestille tidlig, da sikrer du deg god pris" +
-              " og plass på ønsket avgang. Medlemmer av Color Club får de beste prisene på bilpakke til Danmark.</p>";
-          flags.html(string);
-          break;
-      case "Kristiansand-Hirtshals":
-          setIngenLugar();
-          string = "<img class='boat' src='./res/SuperSpeed_2.jpg' alt='Danmark flagg'><p style='max-width: 50%' '>Det " +
-              "lønner seg å bestille tidlig, da sikrer du deg en god pris og plass på ønsket avgang. Overfarten med " +
-              "SuperSpeed fra Kristiansand tar kun 3 timer og 15 minutter. Medlemmer av Color Club får de beste prisene " +
-              "på bilpakke til Danmark.</p>";
-          flags.html(string);
-          break;
-      case "Oslo-Kiel":
-          $("#lugarCheck").prop('checked', true);
-          $("#lugarCheck").attr('disabled', true);
-          $("#lugar").attr('disabled', false)
-          string = "<img class='boat' src='./res/Color_Magic.jpeg' alt='Danmark flagg'><p style='max-width: 50%' '>Det " +
-              "lønner seg å bestille tidlig, da sikrer du deg en god pris og plass på ønsket avgang. Overfarten med " +
-              "SuperSpeed fra Kristiansand tar kun 3 timer og 15 minutter. Medlemmer av Color Club får de beste prisene " +
-              "på bilpakke til Danmark.</p>";
-          flags.html(string);
-          break;
-      case "Sandefjord-Strömstad":
-          setIngenLugar();
-          string = "<img class='boat' src='./res/Color_Hybrid.jpeg' alt='Danmark flagg'><p style='max-width: 50%' '>Kjør " +
-              "bilen om bord og nyt overfarten fra Sandefjord til Strømstad på kun 2 ½ time. Underveis kan du slappe av," +
-              " kose deg med et godt måltid og handle taxfree-varer til svært gunstige priser. TIPS! Det lønner seg å " +
-              "være medlem av Color Club, da får du blant annet gratis reise med bil på flere avganger, og ytterligere " +
-              "10% rabatt på en mengde varer.</p>";
-          flags.html(string);
-          
-          
-          
-    }
-     */
   }
   else {
     item.classList.remove("is-valid");

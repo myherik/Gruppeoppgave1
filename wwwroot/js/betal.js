@@ -1,3 +1,8 @@
+/***
+ * getting bestilling from localstorage ready for payment
+ * if no bestilling is stored user gets returned to reisende.html
+ * else price is put in payment-form
+ */
 $(() => {
     bestilling = JSON.parse(localStorage.getItem("betal"));
     if (bestilling == null){
@@ -8,6 +13,12 @@ $(() => {
 
 let bestilling;
 
+/***
+ * methode is called when user clicks pay,
+ * get all info from form, validates all input
+ * 
+ * @returns {boolean} - if all validations is passed
+ */
 const validering = () => {
     const kortholder = $("#kortholder").val()
     const kortnummer = $("#kortnummer").val()
@@ -61,6 +72,11 @@ const validering = () => {
     return validNavn && validKort && validUtlop && validCvv;
 }
 
+/***
+ * if validering() is passed the bestilling is sent to backend for storing in database
+ * the user gets sent to bekreftelse.html to display ordre
+ * else the user get information about what they have to change
+ */
 const betal = () => {
 
     if (validering()) {
@@ -79,13 +95,28 @@ const betal = () => {
         })
     }
 }
+
+/***
+ * list of buttons for sendArr to run
+ * @type {string[]}
+ */
 const tall = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'ArrowRight']
+/***
+ * if the key from event is in list tall, the focus is moved to input year
+ * 
+ * @param event - keyupo event
+ */
 const sendAar = (event) => {
     if ($("#maaned").val().length === 2 && tall.includes(event.key)){
         $("#aar").focus();
     }
 }
 
+/***
+ * if the key from event matches if the focus is moved to maaned
+ * 
+ * @param event - keyup event
+ */
 const sendMaaned = (event) => {
     if ($("#aar").val().length === 0 && (event.key === 'Backspace' || event.key === 'ArrowLeft')){
         $("#maaned").focus();

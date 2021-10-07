@@ -1,3 +1,9 @@
+/***
+ * Getting ordre from sessionstoarge
+ * if we have saved an order it is displayed to user
+ * else we show a window for user to get to index or get order from server
+ *
+ */
 $(() => {
     const ordre = JSON.parse(sessionStorage.getItem("ordre"));
     if (ordre != null){
@@ -11,8 +17,14 @@ $(() => {
     
 })
 
+/***
+ * When receiving ordre from server
+ * if the ordre is valid it get displayed for user
+ * else an errormessage get displayed
+ * 
+ * @param ordre - ordre received from backend
+ */
 const refresh = (ordre) => {
-    //const ordre = JSON.parse(sessionStorage.getItem("ordre"));
     sessionStorage.setItem('ordre', JSON.stringify(ordre))
     if (ordre != null){
         $("#harIkkeBestilling").attr("hidden", true);
@@ -25,6 +37,12 @@ const refresh = (ordre) => {
     }
 }
 
+/***
+ * Print the ordre to two different tables, one for large screens and one for small
+ * 
+ * 
+ * @param ordre - the ordre to be displayed
+ */
 const placeOrdre = (ordre) => {
     const table = $("#placeBekreftelseHere");
     const lugarString = ordre.lugarType == null ? "Ingen": ordre.lugarType.type + ` x${ordre.antallLugarer}`;
@@ -78,15 +96,34 @@ const placeOrdre = (ordre) => {
     placeReferanse(ordre.referanse)
 }
 
+/***
+ * placed destination in message to user, gets called by placeOrdre(ordre)
+ * 
+ * @param ordre -  the ordre to get destination from
+ */
 const placeDestination = (ordre) => {
     const destination = ordre.ferjestrekning.split('-')[1];
     $("#placeDestinationHere").text(destination);
 }
 
+
+/***
+ * placed reference in message to user, gets called by placeOrdre(ordre)
+ * 
+ * @param referanse - the ordre to get reference from
+ */
 const placeReferanse = (referanse) => {
     $("#ref").text(referanse)
 }
 
+
+/***
+ * Methode tries to get ordre from backend with a reference placed by user
+ * if the method returns an ordre ut get displayed for user by refresh(ordre)
+ * else places an errormessage to user
+ * 
+ * @param id - reference to get ordre
+ */
 const referansebestilling = (id) => {
     const referanse = $(`#${id}`).val()
     const url = ("api/bestilling/ref/" + referanse).toLowerCase();
@@ -108,6 +145,9 @@ const referansebestilling = (id) => {
     })
 }
 
+/***
+ * onClick for return button, sends user to home page
+ */
 const retur = () => {
     window.location.href = "index.html";
 }
