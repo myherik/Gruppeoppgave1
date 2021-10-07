@@ -202,6 +202,22 @@ nav {
         display: initial;
     }
     
+    /* Address zip and ... */
+     #adresse-block{
+         display: flex;
+         flex-direction: row;
+     }
+
+    #adresse-block input{
+        width: 100%;
+        border-radius: .25rem;
+    }
+    
+    #adresse-block .zip {
+        width: 40%;
+        display: inline-block!important;
+    }
+    
     
 }
 
