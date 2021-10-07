@@ -114,7 +114,15 @@ Denne er for om du ikke har gått igjennom en bestilling før du går til bekref
 
 ## Kommentarer om valg vi har tatt
 
-
+- Designmessig har vi valgt å sette fokus responsivitet og UX, samt at det er enkelt.
+- En ekstra funksjonalitet vi har lagt til er referansekode. Kunden får en unik streng på 8 tegn
+der kan brukes til å hente opp igjen en bestillingsutskrift fra tidligere. Dette er spesielt nyttig
+siden utskriften lagres kun i sessionstorage selv om selve bestillingen er å finne i databasen.
+- Flaggene på forsiden er for å gi litt mer farge, men de kan også (om skjermstørrelsen er stor nok)
+brukes til å velge reisestrekningen din. Da vil det automatisk komme opp i select feltet.
 
 
 ## Kilder
+
+- Color line
+- bootstrap
