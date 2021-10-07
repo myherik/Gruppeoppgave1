@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Gruppeoppgave1.Models
@@ -10,9 +10,6 @@ namespace Gruppeoppgave1.Models
     {
         public int Id { get; set; }
         public string Referanse { get; set; }
-        [Required]
-        [RegularExpression("^[A-ZÖ][a-zö]*[-][A-ZÖ][a-zö]*$")]
-        public string Ferjestrekning { get; set; }
         [RegularExpression("^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$")]
         [Required]
         public string UtreiseDato { get; set; }
@@ -22,6 +19,12 @@ namespace Gruppeoppgave1.Models
         [RegularExpression("^[A-Z]{2}\\s[1-9]{1}[0-9]{4}$")]
         public string Registreringsnummer { get; set; }
         public int AntallLugarer { get; set; }
+        [Required]
+        public int ReiseId { get; set; }
+        [ValidateNever]
+        [IgnoreDataMember]
+        public virtual Reise Reise { get; set; }
+        [NotMapped] public string Ferjestrekning => $"{Reise?.Strekning}";
         [ValidateNever]
         public virtual Lugar LugarType { get; set; }
         [Required] 
@@ -31,8 +34,8 @@ namespace Gruppeoppgave1.Models
         
         public override string ToString()
         {
-            return $"Id:{Id}, Ferjestrekning:{Ferjestrekning}, Utreisedato:{UtreiseDato}, HjemreiseDato:{HjemreiseDato}, " +
-                   $"Registreringsnummer:{Registreringsnummer}, Voksne:{string.Join(",", Voksne)}, Barn:{string.Join(",", Barn)}";
+            return $"Id:{Id} Reise: {ReiseId}";
+
         }
     }
 }

@@ -79,7 +79,7 @@ const validering = () => {
  */
 const betal = () => {
 
-    if (validering()) {
+    if (true) {
         $("#btn-betal").attr('disabled', true);
         $.ajax({
             url: "/api/Bestilling",
@@ -94,6 +94,23 @@ const betal = () => {
             },
         })
     }
+
+    /*if (validering()) {
+        $("#btn-betal").attr('disabled', true);
+        $.ajax({
+            url: "/api/Bestilling",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(bestilling),
+            success: data => {
+                console.log(data);
+                localStorage.removeItem("betal");
+                sessionStorage.setItem("ordre", JSON.stringify(data))
+                window.location.href = "/bekreftelse.html";
+            },
+        })
+    }
+     */
 }
 
 /***

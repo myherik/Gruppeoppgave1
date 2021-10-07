@@ -408,9 +408,12 @@ const mini = (land) => {
  * all args are received from fields and stored in locastorage for next page to get
  */
 const videre = () => {
+  console.log(reiser[$("#ferjestrekning").val()].id)
+  
   const inputs = {
     Id: 0,
-    Ferjestrekning: $("#ferjestrekning").val(),
+    //Ferjestrekning: $("#ferjestrekning").val(),
+    ReiseId: reiser[$("#ferjestrekning").val()].id,
     UtreiseDato: $("#velgUtreise").val(),
     HjemreiseDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
     Registreringsnummer: $("#regCheck").is(":checked") ? $("#regNummer").val(): null,

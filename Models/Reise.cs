@@ -18,5 +18,10 @@ namespace Gruppeoppgave1.Models
         public string Info { get; set; }
         [Required]
         public bool MaLugar { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Id}";
+        }
     }
 }

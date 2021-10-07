@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace Gruppeoppgave1.Models
 {
@@ -14,6 +16,8 @@ namespace Gruppeoppgave1.Models
         public int Antall { get; set; }
 
         [Required]
+        [IgnoreDataMember]
         public virtual Reise Reise { get; set; }
+        public int ReiseId { get; set; }
     }
 }

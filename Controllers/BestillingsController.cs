@@ -72,7 +72,7 @@ namespace Gruppeoppgave1.Controllers
             var dbBestilling = _db.HentEn(id).Result;
             if (dbBestilling != null)
             {
-                dbBestilling.Ferjestrekning = bestilling.Ferjestrekning;
+                //dbBestilling.Ferjestrekning = bestilling.Ferjestrekning;
                 dbBestilling.UtreiseDato = bestilling.UtreiseDato;
                 dbBestilling.HjemreiseDato = bestilling.HjemreiseDato;
                 dbBestilling.Registreringsnummer = bestilling.Registreringsnummer;
