@@ -219,3 +219,8 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updatin
 2021-10-07T14:19:16.5194801+02:00  [INF] Content root path: "C:\Users\Bruker\RiderProjects\Gruppeoppgave1" (b5d60022)
 2021-10-07T14:19:33.3095302+02:00 0HMC9HIS0DBTK:00000002 [INF] AddBestilling(Id:0, Ferjestrekning:Oslo-Kiel, Utreisedato:2021-10-10, HjemreiseDato:, Registreringsnummer:, Voksne:, Barn:) (71821658)
 2021-10-07T14:20:28.7478020+02:00 0HMC9HIS0DBTN:00000002 [INF] AddBestilling(Id:0, Ferjestrekning:Oslo-Kiel, Utreisedato:2021-10-10, HjemreiseDato:, Registreringsnummer:, Voksne:, Barn:) (71821658)
+2021-10-07T15:03:48.4317791+02:00  [INF] Now listening on: "https://localhost:5001" (d826f4b8)
+2021-10-07T15:03:48.4386523+02:00  [INF] Now listening on: "http://[::]:5000" (d826f4b8)
+2021-10-07T15:03:48.4391232+02:00  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2021-10-07T15:03:48.4392473+02:00  [INF] Hosting environment: "Development" (c3307c92)
+2021-10-07T15:03:48.4393096+02:00  [INF] Content root path: "C:\Users\Bruker\RiderProjects\Gruppeoppgave1" (b5d60022)
