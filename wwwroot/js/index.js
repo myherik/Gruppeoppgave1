@@ -169,7 +169,6 @@ const validerStrekning = (item) => {
     
     
     bFerjestrekning = true;
-    sjekkVidere();
     const flags = $("#flags");
     reise = reiser[item.value];
 
@@ -195,6 +194,7 @@ const validerStrekning = (item) => {
       $("#lugarCheck").attr('disabled', true);
       $("#lugar").attr('disabled', false)
     }
+    sjekkVidere();
   }
   else {
     item.classList.remove("is-valid");
