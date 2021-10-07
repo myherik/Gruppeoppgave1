@@ -48,11 +48,11 @@ const setPris = () => {
     let antall_voksen = Number($("#voksen").val());
     let antall_lugarer = $("#lugarCheck").is(":checked") && lugarer[lugar] != null ?
         Math.ceil((antall_voksen + antall_barn)/lugarer[lugar].antall):
-        null
+        0
 
     pris *= antall_voksen + (0.5*antall_barn);
 
-    pris += antall_lugarer != null ? Number(antall_lugarer*(lugarer[lugar].pris)) : 0
+    pris += antall_lugarer !== 0 ? Number(antall_lugarer*(lugarer[lugar].pris)) : 0
 
     /*
     switch (lugar){
@@ -172,7 +172,7 @@ const videre = () => {
     UtreiseDato: $("#velgUtreise").val(),
     HjemreiseDato: $("#skalHjem").is(":checked") ? $("#hjemDato").val(): null,
     Registreringsnummer: $("#regCheck").is(":checked") ? $("#regNummer").val(): null,
-    LugarType: lugarer[$("#lugar").val()],
+    LugarType: {id: lugarer[$("#lugar").val()].id},
     Pris: bestilling.pris,
     AntallLugarer: bestilling.antallLugarer,
     reisende: {

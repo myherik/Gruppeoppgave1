@@ -133,6 +133,11 @@ const setKontaktPerson = (item, typePerson) => {
     lagre.click(() => {
         item.classList.add("btn-outline-success")
         item.classList.remove("btn-outline-secondary")
+        adresse[0].classList.remove("is-valid")
+        postnummer[0].classList.remove("is-valid")
+        poststed[0].classList.remove("is-valid")
+        telefon[0].classList.remove("is-valid")
+        epost[0].classList.remove("is-valid")
         $("#personer").attr('hidden', false)
         $("#input-felter").attr('hidden', true)
         $(".kontakt").attr('hidden', true)
@@ -141,6 +146,7 @@ const setKontaktPerson = (item, typePerson) => {
 }
 
 const setVoksen = (index, item, typePerson) => {
+    $(".kontakt").attr('hidden', true)
     $("#typePerson").text(typePerson.toLowerCase())
     console.log(index)
     const fornavn = $("#fornavn")
@@ -181,6 +187,7 @@ const setVoksen = (index, item, typePerson) => {
 }
 
 const setBarn = (index, item, typePerson) => {
+    $(".kontakt").attr('hidden', true)
     $("#typePerson").text(typePerson.toLowerCase())
     console.log(index)
     const fornavn = $("#fornavn")
@@ -325,9 +332,9 @@ const validerAdresse = (item) => {
     const regAdresse = new RegExp(`^([A-ZÆØÅ]{1}[a-zæøå]{0,}\\s{0,1}){1,}\\s[0-9]{1,4}[A-ZÆØÅ]{0,1}$`);
     
     if (regAdresse.test(adresse)){
+        kontaktperson.adresse = adresse
         item.classList.remove("is-invalid");
         item.classList.add("is-valid");
-        kontaktperson.postnummer = postnummer;
     } else {
         item.classList.remove("is-valid");
         item.classList.add("is-invalid");

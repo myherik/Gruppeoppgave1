@@ -6,14 +6,14 @@ namespace Gruppeoppgave1.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        //[Required]
         public string Type { get; set; }
-        [Required]
+        //[Required]
         public int Pris { get; set; }
-        [Required]
+        //[Required]
         public int Antall { get; set; }
 
-        [Required]
+        //[Required]
         public virtual Reise Reise { get; set; }
     }
 }

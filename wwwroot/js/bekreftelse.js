@@ -27,12 +27,12 @@ const refresh = (ordre) => {
 
 const placeOrdre = (ordre) => {
     const table = $("#placeBekreftelseHere");
-    const lugarString = ordre.lugarType == null ? "Ingen": ordre.lugarType + ` x${ordre.antallLugarer}`;
+    const lugarString = ordre.lugarType == null ? "Ingen": ordre.lugarType.type + ` x${ordre.antallLugarer}`;
     const hjemreiseString = ordre.hjemreiseDato == null ? "Ingen": ordre.hjemreiseDato;
     const bilString = ordre.registreringsnummer == null ? "Ingen": ordre.registreringsnummer;
     let out = `<table class="table table-striped table-bordered align-middle bekreftelse-media hidden-lg">` +
         `<tr>` +
-        `<td>Navn på bestilling</td><td>${ordre.voksne[0].fornavn} ${ordre.voksne[0].etternavn}</td>` +
+        `<td>Navn på bestilling</td><td>${ordre.kontaktPerson.fornavn} ${ordre.kontaktPerson.etternavn}</td>` +
         `<td>Antall reisende</td><td>${ordre.voksne.length + ordre.barn.length}</td>` +
         `</tr>` +
         `<tr>` + 

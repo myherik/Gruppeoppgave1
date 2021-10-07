@@ -52,6 +52,9 @@ namespace Gruppeoppgave1.DAL
                 }
             } while (!uniq);
             Console.WriteLine($"--> Vi må loope {teller} ganger");
+
+            bestilling.LugarType = await _db.Lugarer.FirstOrDefaultAsync(l => l.Id == bestilling.LugarType.Id);
+            bestilling.KontaktPerson.Post = await _db.PostSteder.FindAsync(bestilling.KontaktPerson.Post.PostNummer);
             
             _db.Bestillinger.Add(bestilling);
             await _db.SaveChangesAsync();
