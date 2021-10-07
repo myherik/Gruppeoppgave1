@@ -50,17 +50,17 @@ const placeOrdre = (ordre) => {
     const bilString = ordre.registreringsnummer == null ? "Ingen": ordre.registreringsnummer;
     let out = `<table class="table table-striped table-bordered align-middle bekreftelse-media hidden-lg">` +
         `<tr>` +
-        `<td>Navn på bestilling</td><td>${ordre.kontaktPerson.fornavn} ${ordre.kontaktPerson.etternavn}</td>` +
-        `<td>Antall reisende</td><td>${ordre.voksne.length + ordre.barn.length + 1}</td>` +
+        `<th>Navn på bestilling</th><td>${ordre.kontaktPerson.fornavn} ${ordre.kontaktPerson.etternavn}</td>` +
+        `<th>Antall reisende</th><td>${ordre.voksne.length + ordre.barn.length + 1}</td>` +
         `</tr>` +
         `<tr>` + 
-        `<td>Rute</td><td>${ordre.ferjestrekning}</td><td>Lugar</td><td>${lugarString}</td>` +
+        `<th>Rute</th><td>${ordre.ferjestrekning}</td><th>Lugar</th><td>${lugarString}</td>` +
         `</tr>` +
         `<tr>` +
-        `<td>Avreise</td><td>${ordre.utreiseDato}</td><td>Hjemreise</td><td>${hjemreiseString}</td>` +
+        `<th>Avreise</th><td>${ordre.utreiseDato}</td><th>Hjemreise</th><td>${hjemreiseString}</td>` +
         `</tr>` +
         `<tr>` +
-        `<td>Totalt betalt</td><td>${ordre.pris},- kr.</td><td>Bil</td><td>${bilString}</td>` +
+        `<th>Totalt betalt</th><td>${ordre.pris},- kr.</td><th>Bil</th><td>${bilString}</td>` +
         `</tr>`;
     
     out += "</table>";
@@ -69,24 +69,24 @@ const placeOrdre = (ordre) => {
     
     out += `<table class="table table-striped table-bordered align-middle bekreftelse-media hidden-sm">` +
         `<tr>` +
-        `<td>Navn på bestilling</td><td>${ordre.kontaktPerson.fornavn} ${ordre.kontaktPerson.etternavn}</td>` +
+        `<th>Navn på bestilling</th><td>${ordre.kontaktPerson.fornavn} ${ordre.kontaktPerson.etternavn}</td>` +
         `</tr><tr>` +
-        `<td>Antall reisende</td><td>${ordre.voksne.length + ordre.barn.length + 1}</td>` +
+        `<th>Antall reisende</th><td>${ordre.voksne.length + ordre.barn.length + 1}</td>` +
         `</tr>` +
         `<tr>` +
-        `<td>Rute</td><td>${ordre.ferjestrekning}</td>` +
+        `<th>Rute</th><td>${ordre.ferjestrekning}</td>` +
         `</tr><tr>` +
-        `<td>Lugar</td><td>${lugarString}</td>` +
+        `<th>Lugar</th><td>${lugarString}</td>` +
         `</tr>` +
         `<tr>` +
-        `<td>Avreise</td><td>${ordre.utreiseDato}</td>` +
+        `<th>Avreise</th><td>${ordre.utreiseDato}</td>` +
         `</tr><tr>` +
-        `<td>Hjemreise</td><td>${hjemreiseString}</td>` +
+        `<th>Hjemreise</th><td>${hjemreiseString}</td>` +
         `</tr>` +
         `<tr>` +
-        `<td>Bil</td><td>${bilString}</td>` +
+        `<th>Bil</th><td>${bilString}</td>` +
         `</tr><tr>` +
-        `<td>Totalt betalt</td><td>${ordre.pris},- kr.</td>` +
+        `<th>Totalt betalt</th><td>${ordre.pris},- kr.</td>` +
         `</tr>`;
     
     out += "</table>";
