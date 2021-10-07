@@ -51,7 +51,7 @@ const placeOrdre = (ordre) => {
     let out = `<table class="table table-striped table-bordered align-middle bekreftelse-media hidden-lg">` +
         `<tr>` +
         `<td>Navn på bestilling</td><td>${ordre.kontaktPerson.fornavn} ${ordre.kontaktPerson.etternavn}</td>` +
-        `<td>Antall reisende</td><td>${ordre.voksne.length + ordre.barn.length}</td>` +
+        `<td>Antall reisende</td><td>${ordre.voksne.length + ordre.barn.length + 1}</td>` +
         `</tr>` +
         `<tr>` + 
         `<td>Rute</td><td>${ordre.ferjestrekning}</td><td>Lugar</td><td>${lugarString}</td>` +
@@ -69,9 +69,9 @@ const placeOrdre = (ordre) => {
     
     out += `<table class="table table-striped table-bordered align-middle bekreftelse-media hidden-sm">` +
         `<tr>` +
-        `<td>Navn på bestilling</td><td>${ordre.voksne[0].fornavn} ${ordre.voksne[0].etternavn}</td>` +
+        `<td>Navn på bestilling</td><td>${ordre.kontaktPerson.fornavn} ${ordre.kontaktPerson.etternavn}</td>` +
         `</tr><tr>` +
-        `<td>Antall reisende</td><td>${ordre.voksne.length + ordre.barn.length}</td>` +
+        `<td>Antall reisende</td><td>${ordre.voksne.length + ordre.barn.length + 1}</td>` +
         `</tr>` +
         `<tr>` +
         `<td>Rute</td><td>${ordre.ferjestrekning}</td>` +
