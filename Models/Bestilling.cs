@@ -25,6 +25,7 @@ namespace Gruppeoppgave1.Models
         [ValidateNever]
         [IgnoreDataMember]
         public virtual Reise Reise { get; set; }
+        // this is for serving ferjestrekining to client without returning reise
         [NotMapped] 
         public string Ferjestrekning => $"{Reise?.Strekning}";
         [ValidateNever]

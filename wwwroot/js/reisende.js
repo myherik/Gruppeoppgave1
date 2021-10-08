@@ -400,7 +400,7 @@ const validerBursdag = (index, item, type, bool) => {
  */
 const validerAdresse = (item) => {
     const adresse = item.value;
-    const regAdresse = new RegExp(`^([A-ZÆØÅ]{1}[a-zæøå]{0,}\\s{0,1}){1,}\\s[0-9]{1,4}[A-ZÆØÅ]{0,1}$`);
+    const regAdresse = new RegExp("^[A-ZØÆÅ][a-zøæå]+[ ]([a-zøæåA-Zøæå]+[ ])*[0-9]{1,4}[A-ZÆØÅ]{0,1}$")
     
     if (regAdresse.test(adresse)){
         kontaktperson.adresse = adresse
