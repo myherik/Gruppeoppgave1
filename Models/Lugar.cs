@@ -14,10 +14,9 @@ namespace Gruppeoppgave1.Models
         public int Pris { get; set; }
         [Required]
         public int Antall { get; set; }
-
+        public int ReiseId { get; set; }
         [Required]
         [IgnoreDataMember]
         public virtual Reise Reise { get; set; }
-        public int ReiseId { get; set; }
     }
 }

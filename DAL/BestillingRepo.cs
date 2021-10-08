@@ -60,7 +60,6 @@ namespace Gruppeoppgave1.DAL
                 bestilling.LugarType = await _db.Lugarer.FirstOrDefaultAsync(l => l.Id == bestilling.LugarType.Id);
             }
             bestilling.KontaktPerson.Post = await _db.PostSteder.FindAsync(bestilling.KontaktPerson.Post.PostNummer);
-            Console.WriteLine($"--> {bestilling.ReiseId}");
             bestilling.Reise = await _db.Reiser.FindAsync(bestilling.ReiseId);
             
             _db.Bestillinger.Add(bestilling);

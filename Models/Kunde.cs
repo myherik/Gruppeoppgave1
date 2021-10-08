@@ -31,6 +31,7 @@ namespace Gruppeoppgave1.Models
         [Required] 
         public virtual Post Post { get; set; }
         [Required]
+        [RegularExpression("^[49][0-9]{7}")]
         public string Telefon { get; set; }
         [Required]
         [EmailAddress]

@@ -18,13 +18,15 @@ namespace Gruppeoppgave1.Models
         public int Pris { get; set; }
         [RegularExpression("^[A-Z]{2}\\s[1-9]{1}[0-9]{4}$")]
         public string Registreringsnummer { get; set; }
+        [Required]
         public int AntallLugarer { get; set; }
         [Required]
         public int ReiseId { get; set; }
         [ValidateNever]
         [IgnoreDataMember]
         public virtual Reise Reise { get; set; }
-        [NotMapped] public string Ferjestrekning => $"{Reise?.Strekning}";
+        [NotMapped] 
+        public string Ferjestrekning => $"{Reise?.Strekning}";
         [ValidateNever]
         public virtual Lugar LugarType { get; set; }
         [Required] 
